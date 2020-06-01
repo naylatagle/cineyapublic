@@ -3,13 +3,13 @@ package com.example.alumno.cineya.dto;
 public class Cine {
 
     private int logoCine;
-    private String nombreCine;
-    private String direccionCine;
+    private String Nombre;
+    private String Direccion;
 
     /*public Cine(int logo, String nombre, String direccion){
         logoCine = logo;
-        nombreCine = nombre;
-        direccionCine = direccion;
+        Nombre = nombre;
+        Direccion = direccion;
     }*/
 
     public void setLogoCine(int logoCine) {
@@ -20,19 +20,19 @@ public class Cine {
         return logoCine;
     }
 
-    public void setNombreCine(String nombreCine) {
-        this.nombreCine = nombreCine;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
-    public String getNombreCine(){
-        return nombreCine;
+    public String getNombre(){
+        return Nombre;
     }
 
-    public void setDireccionCine(String direccionCine) {
-        this.direccionCine = direccionCine;
+    public void setDireccion(String Direccion) {
+        this.Direccion = Direccion;
     }
 
-    public String getDireccionCine(){
-        return direccionCine;
+    public String getDireccion(){
+        return Direccion;
     }
 }

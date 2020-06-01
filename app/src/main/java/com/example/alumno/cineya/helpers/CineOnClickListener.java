@@ -26,7 +26,7 @@ public class CineOnClickListener implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-        Toast.makeText(context, cine.getNombreCine(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, cine.getNombre(), Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(context, DetailsCine.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         String cineSerializado = new Gson().toJson(cine);

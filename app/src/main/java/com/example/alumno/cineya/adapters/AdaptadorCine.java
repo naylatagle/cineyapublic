@@ -39,7 +39,7 @@ public class AdaptadorCine extends BaseAdapter {
 
     @Override
     public long getItemId(int i) {
-        return cineList.get(i).getNombreCine().hashCode();
+        return cineList.get(i).getNombre().hashCode();
     }
 
     //Método para asignar cada elemento del lista_cines a datosCine
@@ -59,8 +59,8 @@ public class AdaptadorCine extends BaseAdapter {
         Cine cine = cineList.get(i);
 
         logoC.setImageResource(cineList.get(i).getLogoCine());
-        nombreC.setText(cineList.get(i).getNombreCine());
-        direccionC.setText(cineList.get(i).getDireccionCine());
+        nombreC.setText(cineList.get(i).getNombre());
+        direccionC.setText(cineList.get(i).getDireccion());
 
         cineView.setOnClickListener(new CineOnClickListener(context, cine));
 
