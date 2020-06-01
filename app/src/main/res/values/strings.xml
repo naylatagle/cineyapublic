@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CineYa</string>
+    <string name="title_activity_ubicacion_buscar">Map</string>
+    <string name="facebook_app_id">832425980584185</string> <string name="fb_login_protocol_scheme">fb832425980584185</string>
+</resources>

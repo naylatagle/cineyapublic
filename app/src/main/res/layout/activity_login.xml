@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ffffff">
+
+    <ImageView
+        android:id="@+id/logoapp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logocineya"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Usuario"
+        android:ems="10"
+        android:layout_below="@+id/logoapp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="17dp"
+        android:id="@+id/usuario" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="Password"
+        android:ems="10"
+        android:layout_below="@+id/usuario"
+        android:layout_alignLeft="@+id/usuario"
+        android:layout_alignStart="@+id/usuario"
+        android:id="@+id/pass" />
+
+    <Button
+        android:id="@+id/ingresar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/usuario"
+        android:layout_alignLeft="@+id/usuario"
+        android:layout_alignRight="@+id/usuario"
+        android:layout_alignStart="@+id/usuario"
+        android:layout_below="@+id/pass"
+        android:layout_marginTop="20dp"
+        android:text="Iniciar sesión"
+        android:textAllCaps="true" />
+
+    <com.facebook.login.widget.LoginButton
+        android:id="@+id/login_button"
+        android:layout_width="192dp"
+        android:layout_height="486dp"
+        android:layout_below="@+id/ingresar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_marginTop="41dp"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/fb"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/ingresar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="41dp"
+        android:background="#3B5998"
+        android:onClick="onClickFacebookButton"
+        android:text="Continuar con Facebook"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="14sp" />
+
+
+    <com.google.android.gms.common.SignInButton
+        android:id="@+id/logingoogle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_below="@+id/login_button"
+        android:layout_alignRight="@+id/login_button"
+        android:layout_alignEnd="@+id/login_button"
+        android:layout_alignLeft="@+id/login_button"
+        android:layout_alignStart="@+id/login_button"/>
+
+    <Button
+        android:id="@+id/gl"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
+        android:layout_below="@+id/fb"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="#DB4437"
+        android:onClick="onClickGoogleButton"
+        android:text="Continuar con Google"
+        android:textAllCaps="false"
+        android:textColor="#ffffff"
+        android:textSize="14sp" />
+
+    <ImageView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_height="2dp"
+        android:scaleType="fitXY"
+        android:layout_width="190dp"
+        android:layout_below="@+id/ingresar"
+        android:layout_marginTop="20dp"
+        android:visibility="visible"
+        android:layout_centerHorizontal="true"
+
+        android:src="@android:drawable/divider_horizontal_bright"/>
+
+</RelativeLayout>
+
