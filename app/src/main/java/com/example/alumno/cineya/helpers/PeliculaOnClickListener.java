@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.example.alumno.cineya.activities.PeliculaBuscar;
+import com.example.alumno.cineya.fragments.PeliculaBuscarFragment;
 import com.example.alumno.cineya.dto.Pelicula;
 import com.google.gson.Gson;
 

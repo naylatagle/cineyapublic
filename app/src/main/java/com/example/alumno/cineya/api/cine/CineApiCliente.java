@@ -29,7 +29,7 @@ public class CineApiCliente {
         context = con;
     }
 
-    private static CineApi getClient(){
+    public static CineApi getClient(){
         if(cliente == null){
             Retrofit retrofit = new Retrofit.Builder()
                     //.baseUrl("https://my-json-server.typicode.com/naylatagle/demo/")

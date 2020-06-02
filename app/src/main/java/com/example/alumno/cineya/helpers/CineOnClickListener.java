@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.alumno.cineya.activities.CineBuscar;
 import com.example.alumno.cineya.activities.DetailsCine;
 import com.example.alumno.cineya.dto.Cine;
 import com.google.gson.Gson;
