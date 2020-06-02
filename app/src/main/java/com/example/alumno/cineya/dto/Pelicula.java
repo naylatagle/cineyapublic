@@ -32,7 +32,7 @@ public class Pelicula {
         this.generoPelicula = generoPelicula;
     }
 
-    public String getGeneroPelicula(){
+    public String getGeneroPelicula() {
         return generoPelicula;
     }
 }

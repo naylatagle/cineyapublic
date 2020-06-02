@@ -1,6 +1,8 @@
 package com.example.alumno.cineya.adapters;
 
 import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +10,10 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.core.content.res.ResourcesCompat;
+
 import com.example.alumno.cineya.R;
+import com.example.alumno.cineya.adapters.base.IAdapterClickListener;
 import com.example.alumno.cineya.dto.Pelicula;
 import com.example.alumno.cineya.helpers.PeliculaOnClickListener;
 
@@ -19,6 +24,13 @@ public class AdaptadorPelicula extends BaseAdapter{
     //Constructor de la clase AdaptadorCine
     Context context;
     List<Pelicula> peliculaList;
+    IAdapterClickListener<Pelicula> mListener;
+
+    public AdaptadorPelicula(Context context, List<Pelicula> peliculaList, IAdapterClickListener<Pelicula> listener){
+        this.context = context;
+        this.peliculaList = peliculaList;
+        this.mListener = listener;
+    }
 
     public AdaptadorPelicula(Context context, List<Pelicula> peliculaList){
         this.context = context;
@@ -52,14 +64,29 @@ public class AdaptadorPelicula extends BaseAdapter{
         TextView NombrePelicula = (TextView) peliculaView.findViewById(R.id.nombrePelicula);
         TextView GeneroPelicula = (TextView) peliculaView.findViewById(R.id.generoPelicula);
 
-        Pelicula pelicula = peliculaList.get(i);
+        final Pelicula pelicula = peliculaList.get(i);
+        try {
+            Drawable draw = ResourcesCompat.getDrawable(context.getResources(), peliculaList.get(i).getLogoPelicula(), context.getTheme());
+            LogoPelicula.setImageDrawable(draw);
+        } catch (Resources.NotFoundException e){
 
+        }
         NombrePelicula.setText(peliculaList.get(i).getNombrePelicula());
-        LogoPelicula.setImageResource(peliculaList.get(i).getLogoPelicula());
+
         GeneroPelicula.setText(peliculaList.get(i).getGeneroPelicula());
 
-        peliculaView.setOnClickListener(new PeliculaOnClickListener(context, pelicula));
+        if(mListener!=null) {
 
+            peliculaView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (mListener != null)
+                        mListener.onClick(pelicula);
+                }
+            });
+        } else {
+            peliculaView.setOnClickListener(new PeliculaOnClickListener(context, pelicula));
+        }
         /*item.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
