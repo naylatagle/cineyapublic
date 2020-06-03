@@ -1,23 +1,32 @@
 package com.example.alumno.cineya.fragments;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.alumno.cineya.R;
+import com.example.alumno.cineya.activities.CineBuscar;
+import com.example.alumno.cineya.activities.PeliculaBuscar;
 import com.example.alumno.cineya.adapters.AdaptadorCine;
+import com.example.alumno.cineya.adapters.base.IAdapterClickListener;
 import com.example.alumno.cineya.api.cine.CineApiCliente;
 import com.example.alumno.cineya.dto.Cine;
+import com.example.alumno.cineya.dto.Pelicula;
 import com.example.alumno.cineya.fragments.base.BaseFragment;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
+import com.google.gson.Gson;
 
 import java.util.List;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
 
-public class CineBuscarFragment extends BaseFragment {
+
+public class CineBuscarFragment extends BaseFragment implements IAdapterClickListener<Cine> {
 
     public static CineBuscarFragment newInstance(){
         return new CineBuscarFragment();
@@ -46,9 +55,6 @@ public class CineBuscarFragment extends BaseFragment {
                 hideLoading();
             }
         });
-
-
-
       /*  String cineSerializado = extras.getString("cine");
         Cine cine = new Gson().fromJson(cineSerializado, Cine.class);
 
@@ -66,4 +72,18 @@ public class CineBuscarFragment extends BaseFragment {
         ListView listaCines = (ListView) findViewById(R.id.listaCines);
         listaCines.setAdapter(adaptador);
    */ }
+
+    @Override
+    public void onClick(Cine object) {
+        Toast.makeText(getApplicationContext(), object.getNombre(), Toast.LENGTH_SHORT).show();
+        if(getActivity()!=null) {
+            Intent intent = new Intent(getActivity(), CineBuscar.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+            String cineSerializado = new Gson().toJson(object);
+            intent.putExtra("cine", cineSerializado);
+            getContext().startActivity(intent);
+        }
+    }
+
 }

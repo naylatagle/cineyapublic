@@ -13,6 +13,7 @@ import com.example.alumno.cineya.helpers.OnSuccessCallback;
 import java.util.List;
 
 public class PeliculaBuscar extends BaseActivity {
+
     @Override
     protected void setContentView() {
         setContentView(R.layout.buscar_pelicula);
