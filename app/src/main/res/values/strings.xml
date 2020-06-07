@@ -6,4 +6,7 @@
     <string name="buttom_bar_cines">Cines</string>
     <string name="buttom_bar_peliculas">Peliculas</string>
     <string name="buttom_bar_ubicacion">Ubicación</string>
+    <string name="buttom_bar_favoritos">Favoritos</string>
+    <string name="open_drawer_toggle">open</string>
+    <string name="close_drawer_toggle">close</string>
 </resources>
