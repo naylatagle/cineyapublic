@@ -5,28 +5,28 @@
     <item
         android:id="@+id/action_buttom_bar_favoritos"
         android:enabled="true"
-        android:icon="@drawable/common_google_signin_btn_icon_dark_normal"
+        android:icon="@drawable/ic_favoritos"
         android:title="@string/buttom_bar_favoritos"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_buttom_bar_cines"
         android:enabled="true"
-        android:icon="@drawable/common_google_signin_btn_icon_dark_normal"
+        android:icon="@drawable/ic_cines"
         android:title="@string/buttom_bar_cines"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_buttom_bar_peliculas"
         android:enabled="true"
-        android:icon="@drawable/common_google_signin_btn_icon_dark_normal"
+        android:icon="@drawable/ic_pelicula"
         android:title="@string/buttom_bar_peliculas"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/action_buttom_bar_ubicacion"
         android:enabled="true"
-        android:icon="@drawable/common_google_signin_btn_icon_dark_normal"
+        android:icon="@drawable/ic_mapa"
         android:title="@string/buttom_bar_ubicacion"
         app:showAsAction="ifRoom" />
 </menu>

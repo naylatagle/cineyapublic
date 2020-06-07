@@ -53,6 +53,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         mDrawerLayout.addDrawerListener(mBarDrawerToggle);
         mBarDrawerToggle.syncState();
 
+        //mDrawerLayout.setBackgroundColor(getResources().getColor(R.color.com_facebook_button_background_color_pressed));
+
+
         mMainNavigationView.setNavigationItemSelectedListener(this);
 
         mBottomNavigationView = findViewById(R.id.navigation_bottom);
