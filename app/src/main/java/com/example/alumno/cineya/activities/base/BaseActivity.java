@@ -6,7 +6,9 @@ import android.os.Bundle;
 
 import androidx.annotation.AnimRes;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -16,6 +18,7 @@ import com.example.alumno.cineya.control.IFragmentControl;
 public abstract class BaseActivity extends AppCompatActivity implements IFragmentControl {
 
     AlertDialog mAlertDialog;
+    protected Toolbar mToolbar;
 
     enum Anim{
         RIGHT, LEFT
@@ -27,6 +30,7 @@ public abstract class BaseActivity extends AppCompatActivity implements IFragmen
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView();
+        setupToolbarInner();
         mAlertDialog = new ProgressDialog.Builder(BaseActivity.this)
                 .setCancelable(false)
                 .setMessage(R.string.loading_message)
@@ -45,6 +49,26 @@ public abstract class BaseActivity extends AppCompatActivity implements IFragmen
     public void hideLoading(){
         if(mAlertDialog!=null)
             mAlertDialog.hide();
+    }
+
+    private void setupToolbarInner() {
+        setSupportActionBar();
+        final ActionBar ab = getSupportActionBar();
+        if (ab == null) return;
+
+        setupToolbar(ab);
+    }
+
+    protected void setSupportActionBar() {
+        if (mToolbar != null) {
+            setSupportActionBar(mToolbar);
+        }
+    }
+
+    protected void setupToolbar(ActionBar ab) {
+        ab.setDisplayShowHomeEnabled(true); // show or hide the default home button
+        ab.setDisplayHomeAsUpEnabled(true);
+        ab.setDisplayShowTitleEnabled(true);
     }
 
     /*FRAGMENT TRANSACTIONS*/
