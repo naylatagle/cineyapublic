@@ -7,7 +7,11 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
 import com.example.alumno.cineya.R;
@@ -24,17 +28,25 @@ import com.google.android.gms.maps.model.MarkerOptions;
 
 import static android.location.LocationManager.GPS_PROVIDER;
 
-public class UbicacionBuscar extends BaseActivity implements OnMapReadyCallback {
-
+public class UbicacionBuscar extends AppCompatActivity implements OnMapReadyCallback {
+//BaseActivity
     private GoogleMap mMap;
     private Marker marcador;
     double lat = 0.0;
     double lng = 0.0;
 
 
-    @Override
+
+    /*@Override
     protected void setContentView() {
         setContentView(R.layout.buscar_ubicacion);
+    }*/
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.map_options, menu);
+        return true;
     }
 
     @Override
@@ -72,6 +84,8 @@ public class UbicacionBuscar extends BaseActivity implements OnMapReadyCallback 
         LatLng coordenadas = new LatLng(lat, lng);
         CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
         if (marcador != null) marcador.remove();
+
+
         marcador = mMap.addMarker(new MarkerOptions()
                         .position(coordenadas)
                         .title("Estás acá")
@@ -148,6 +162,27 @@ public class UbicacionBuscar extends BaseActivity implements OnMapReadyCallback 
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         actualizarUbicacion(location);
         locationManager.requestLocationUpdates(GPS_PROVIDER, 15000, 0, locListener);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Change the map type based on the user's selection.
+        switch (item.getItemId()) {
+            case R.id.normal_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                return true;
+            case R.id.hybrid_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                return true;
+            case R.id.satellite_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                return true;
+            case R.id.terrain_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 

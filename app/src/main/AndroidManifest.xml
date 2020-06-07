@@ -33,6 +33,7 @@
             android:name=".activities.CineBuscar"
             android:theme="@style/ToolbarTheme" />
         <activity
+
             android:name=".activities.PeliculaBuscar"
             android:theme="@style/ToolbarTheme" />
         <activity
@@ -51,7 +52,7 @@
         -->
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB_endKAE4Xb8lNliRRmJlXdUFSjmUrVGQ"
+            android:value="AIzaSyDDHFdPnrOrvTEjDfSEPI7KqhOfF-AZab0"
             />
 
         <activity
@@ -62,3 +63,8 @@
         <activity android:name="com.facebook.FacebookActivity" android:configChanges= "keyboard|keyboardHidden|screenLayout|screenSize|orientation" android:label="@string/app_name" /> <activity android:name="com.facebook.CustomTabActivity" android:exported="true"> <intent-filter> <action android:name="android.intent.action.VIEW" /> <category android:name="android.intent.category.DEFAULT" /> <category android:name="android.intent.category.BROWSABLE" /> <data android:scheme="@string/fb_login_protocol_scheme" /> </intent-filter> </activity>
     </application>
 </manifest>
+
+    <!--
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyB_endKAE4Xb8lNliRRmJlXdUFSjmUrVGQ"
+    -->
