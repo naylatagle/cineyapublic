@@ -27,6 +27,8 @@ import com.example.alumno.cineya.adapters.PageFragmentsAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
+
+
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener,  NavigationView.OnNavigationItemSelectedListener{
 
     BottomNavigationView mBottomNavigationView;

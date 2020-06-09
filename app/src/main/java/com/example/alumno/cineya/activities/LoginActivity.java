@@ -13,6 +13,9 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
 import com.example.alumno.cineya.R;
 
 public class LoginActivity extends AppCompatActivity {
