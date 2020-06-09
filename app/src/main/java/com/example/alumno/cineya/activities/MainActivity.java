@@ -1,6 +1,8 @@
 package com.example.alumno.cineya.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -68,6 +70,20 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     }
 
+    private void logout (){
+        //FirebaseAuth.getInstance().signOut();
+        SharedPreferences preferences =getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.clear();
+        editor.apply();
+
+        //Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        //finish();
+    }
+
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -82,6 +98,9 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             case R.id.action_buttom_bar_ubicacion:
                 mViewPager.setCurrentItem(2, true);
                 mDrawerLayout.closeDrawer(Gravity.LEFT, true);
+                break;
+            case R.id.action_buttom_bar_logout:
+                logout();
                 break;
         }
         changeDrawer(true);

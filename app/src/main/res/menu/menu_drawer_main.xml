@@ -29,4 +29,10 @@
         android:icon="@drawable/ic_mapa"
         android:title="@string/buttom_bar_ubicacion"
         app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/action_buttom_bar_logout"
+        android:enabled="true"
+        android:title="Cerrar Sesión"
+        app:showAsAction="ifRoom" />
 </menu>
