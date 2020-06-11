@@ -10,6 +10,7 @@ import android.location.LocationManager;
 //import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -77,6 +78,7 @@ public class UbicacionBuscarFragment extends BaseFragment implements OnMapReadyC
 
     private void agregarMarcador(double lat, double lng) {
         LatLng coordenadas = new LatLng(lat, lng);
+
         CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
         if (marcador != null) marcador.remove();
         marcador = mMap.addMarker(new MarkerOptions()
@@ -104,8 +106,8 @@ public class UbicacionBuscarFragment extends BaseFragment implements OnMapReadyC
                 .title("Hoyts DOT")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
 
-
         mMap.animateCamera(miUbicacion);
+
     }
 
     private void actualizarUbicacion(Location location) {
@@ -148,6 +150,7 @@ public class UbicacionBuscarFragment extends BaseFragment implements OnMapReadyC
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            Toast.makeText(getContext(), "NO TENES PERMISOS PARA EL GPS", Toast.LENGTH_SHORT).show();
             return;
         }
         LocationManager locationManager = (LocationManager) getContext().getSystemService(Context.LOCATION_SERVICE);
