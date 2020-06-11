@@ -73,6 +73,8 @@ public class UbicacionBuscar extends AppCompatActivity implements OnMapReadyCall
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         miUbicacion();
+        agregarMarcador();
+
 
         // Add a marker in Sydney and move the camera
         /*LatLng sydney = new LatLng(-34, 151);
@@ -80,7 +82,7 @@ public class UbicacionBuscar extends AppCompatActivity implements OnMapReadyCall
         mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));*/
     }
 
-    private void agregarMarcador(double lat, double lng) {
+    private void agregarMarcador(/*double lat, double lng*/) {
         LatLng coordenadas = new LatLng(lat, lng);
         CameraUpdate miUbicacion = CameraUpdateFactory.newLatLngZoom(coordenadas, 16);
         if (marcador != null) marcador.remove();
@@ -120,7 +122,7 @@ public class UbicacionBuscar extends AppCompatActivity implements OnMapReadyCall
         if (location != null) {
             lat = location.getLatitude();
             lng = location.getLongitude();
-            agregarMarcador(lat, lng);
+            agregarMarcador(/*lat, lng*/);
         }
 
     }
