@@ -9,6 +9,7 @@ import android.location.LocationManager;
 //import android.support.v4.app.ActivityCompat;
 //import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
@@ -86,24 +87,114 @@ public class UbicacionBuscarFragment extends BaseFragment implements OnMapReadyC
                         .title("Estás acá")
                 /*.icon(BitmapDescriptorFactory.fromResource(R.mipmap.ic_launcher))*/);
 
-        marcador = mMap.addMarker(new MarkerOptions()
-                .position(new LatLng(-34.589016, -58.393860))
-                .title("Village Recoleta")
-                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
-
-        marcador = mMap.addMarker(new MarkerOptions()
+        marcador = mMap.addMarker (new MarkerOptions()
                 .position(new LatLng(-34.603245, -58.410653))
                 .title("Hoyts Abasto")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
 
-        marcador = mMap.addMarker(new MarkerOptions()
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.588912, -58.384112))
+                .title("Atlas Patio Bullrich")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.589016, -58.393860))
+                .title("Village Recoleta")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.556660, -58.461653))
+                .title("Cinema City General Paz")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.553887, -58.453211))
+                .title("Showcase Belgrano")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.560472, -58.456301))
+                .title("Multiplex Belgrano")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.555937, -58.461768))
+                .title("Arte Multiplex Belgrano")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.615742, -58.428898))
+                .title("Cinemark Caballito")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
                 .position(new LatLng(-34.618243, -58.437239))
                 .title("Village Caballito")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
 
-        marcador = mMap.addMarker(new MarkerOptions()
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.603958, -58.388911))
+                .title("Premier")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.604147, -58.386936))
+                .title("Lorca")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.602423, -58.377796))
+                .title("Monumental Lavalle")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.608956, -58.389628))
+                .title("Espacio INCAA Km 0 Gaumont")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.602397, -58.377806))
+                .title("Monumental Lavalle 4D")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.629300, -58.462361))
+                .title("Atlas Flores")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.586414, -58.410146))
+                .title("Cinemark Palermo")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.575244, -58.404319))
+                .title("Atlas Alcorta")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.621116, -58.364928))
+                .title("Cinemark Puerto Madero")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.611690, -58.517026))
+                .title("Cinema Devoto")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
                 .position(new LatLng(-34.546169, -58.488341))
                 .title("Hoyts DOT")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.547000, -58.488287))
+                .title("Hoyts Dot Premium")
+                .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
+
+        marcador = mMap.addMarker (new MarkerOptions()
+                .position(new LatLng(-34.601810, -58.494763))
+                .title("CPM Cinemas Del Parque Shopping")
                 .icon(BitmapDescriptorFactory.fromResource(R.drawable.claqueta)));
 
         mMap.animateCamera(miUbicacion);
@@ -157,5 +248,26 @@ public class UbicacionBuscarFragment extends BaseFragment implements OnMapReadyC
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         actualizarUbicacion(location);
         locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 15000, 0, locListener);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Change the map type based on the user's selection.
+        switch (item.getItemId()) {
+            case R.id.normal_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
+                return true;
+            case R.id.hybrid_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                return true;
+            case R.id.satellite_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_SATELLITE);
+                return true;
+            case R.id.terrain_map:
+                mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 }

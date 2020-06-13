@@ -77,7 +77,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     private void logout (){
         //FirebaseAuth.getInstance().signOut();
-        SharedPreferences preferences =getSharedPreferences("loginPrefs", Context.MODE_PRIVATE);
+        SharedPreferences preferences =getSharedPreferences("CineYa", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.apply();

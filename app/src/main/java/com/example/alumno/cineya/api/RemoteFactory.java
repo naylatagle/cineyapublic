@@ -2,10 +2,13 @@ package com.example.alumno.cineya.api;
 
 import android.util.Log;
 
+import com.google.gson.GsonBuilder;
+
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RemoteFactory {
 
@@ -19,6 +22,7 @@ public class RemoteFactory {
     private <T> T createApiClient(Class<T> clazz, final String endPoint) {
         final Retrofit restAdapter = new Retrofit.Builder()
                 .baseUrl(endPoint)
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().create()))
                 .client(getClient())
                 .build();
 
