@@ -43,18 +43,17 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
 
         final ListView cineC = (ListView) view.findViewById(R.id.listaCines);
 
-        CineApiCliente.init(getContext());
-
         showLoading();
 
-        CineApiCliente.getCines(new OnSuccessCallback() {
+        new CineApiCliente (getContext()).getCines(new OnSuccessCallback() {
             @Override
             public void execute(Object body) {
 
                 cineC.setAdapter(new AdaptadorCine(getContext(), (List<Cine>) body));
                 hideLoading();
             }
-        });
+        });;
+
       /*  String cineSerializado = extras.getString("cine");
         Cine cine = new Gson().fromJson(cineSerializado, Cine.class);
 

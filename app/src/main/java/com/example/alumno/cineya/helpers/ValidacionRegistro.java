@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class ValidacionRegistro extends StringRequest{
 
-    private static final String VALIDACION_REGISTRO_URL="https://vanadous-inches.000webhostapp.com/registroandroid.php";
+    private static final String VALIDACION_REGISTRO_URL="https://vanadous-inches.000webhostapp.com/conexionandroid.php";
 
 
     private Map<String,String> params;

@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.facebook.CallbackManager;
@@ -86,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //finish();
-                startActivity(new Intent(context, Registro.class));
+                startActivity(new Intent(LoginActivity.this, Registro.class));
                 //Intent intent2 = new Intent (v.getContext(), Registro.class);
                 //startActivityForResult(intent2, 0);
             }
@@ -116,7 +117,8 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void OnActivityResult(int requestCode, int resultCode, Intent data){
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }

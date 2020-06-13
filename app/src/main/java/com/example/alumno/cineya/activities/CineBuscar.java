@@ -23,17 +23,16 @@ public class CineBuscar extends BaseActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CineApiCliente.init(getApplicationContext());
-
         showLoading();
-        CineApiCliente.getCines(new OnSuccessCallback() {
+
+        new CineApiCliente(getApplicationContext()).getCines(new OnSuccessCallback() {
             @Override
             public void execute(Object body) {
                 ListView cineC = (ListView) findViewById(R.id.listaCines);
                 cineC.setAdapter(new AdaptadorCine(getBaseContext(), (List<Cine>) body));
                 hideLoading();
             }
-        });
+        });;
 
         Bundle extras = getIntent().getExtras();
 

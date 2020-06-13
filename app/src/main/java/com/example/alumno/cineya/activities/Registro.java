@@ -13,20 +13,26 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
 import com.example.alumno.cineya.R;
+import com.example.alumno.cineya.activities.base.BaseActivity;
 import com.example.alumno.cineya.helpers.RegistroPersonas;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class Registro extends AppCompatActivity implements View.OnClickListener {
+public class Registro extends BaseActivity implements View.OnClickListener {
 
     EditText etnombre,etusuario,etcontraseña,etrepcontraseña;
     Button btn_registrar;
+
+    @Override
+    protected void setContentView() {
+        setContentView(R.layout.activity_registro);
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro);
 
         etnombre= (EditText) findViewById(R.id.nombre);
 
@@ -42,14 +48,18 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
 
     @Override
     public void onClick(View view) {
+        showLoading();
+
         final String nombre=etnombre.getText().toString();
         final String usuario=etusuario.getText().toString();
         final String contrasena=etcontraseña.getText().toString();
         final String repcontrasena=etrepcontraseña.getText().toString();
 
+
         Response.Listener<String> respoListener = new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+                hideLoading();
                 try {
                     JSONObject jsonResponse =new JSONObject(response);
                     boolean success=jsonResponse.getBoolean("success");
@@ -57,6 +67,7 @@ public class Registro extends AppCompatActivity implements View.OnClickListener 
                     if (success){
                         Intent intent =new Intent(Registro.this,MainActivity.class);
                         Registro.this.startActivity(intent);
+                        finishAffinity();
                     }else{
 
                         AlertDialog.Builder builder= new AlertDialog.Builder(Registro.this);

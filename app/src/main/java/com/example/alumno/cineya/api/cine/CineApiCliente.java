@@ -23,11 +23,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CineApiCliente {
 
-    private static Context context;
+    private Context context;
     private CineApi cliente;
 
-    public void init(Context con){
-        context = con;
+    public CineApiCliente(Context context) {
+        this.context = context;
         cliente = new RemoteFactory().createApiClient(CineApi.class);
     }
 
