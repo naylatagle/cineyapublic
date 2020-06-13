@@ -16,9 +16,7 @@ public class Cine {
         this.logoCine = logoCine;
     }
 
-    public int getLogoCine(){
-        return logoCine;
-    }
+    public int getLogoCine(){ return logoCine; }
 
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;

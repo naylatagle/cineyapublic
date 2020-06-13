@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 //import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +27,7 @@ import com.example.alumno.cineya.activities.base.BaseActivity;
 import com.example.alumno.cineya.adapters.PageFragmentsAdapter;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
-
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MainActivity extends BaseActivity implements BottomNavigationView.OnNavigationItemSelectedListener,  NavigationView.OnNavigationItemSelectedListener{
@@ -46,6 +47,8 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
 
         mDrawerLayout = findViewById(R.id.drawer_layout);
@@ -78,12 +81,15 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
         SharedPreferences.Editor editor = preferences.edit();
         editor.clear();
         editor.apply();
+        //Log.d("Prueba", "editor");
 
-        //Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-        Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
+        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+        //Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(intent);
         //finish();
+
+
     }
 
 

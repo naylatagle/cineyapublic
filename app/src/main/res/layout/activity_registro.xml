@@ -37,7 +37,7 @@
         android:id="@+id/reppass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Repetir Pasword"
+        android:hint="Repetir Password"
         android:inputType="text"/>
 
     <Button

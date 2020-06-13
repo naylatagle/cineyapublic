@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
 import android.content.Intent;
@@ -13,20 +14,26 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
 import com.facebook.FacebookSdk;
 import com.facebook.appevents.AppEventsLogger;
 
 import com.example.alumno.cineya.R;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 public class LoginActivity extends AppCompatActivity {
 
     private EditText userEt;
     private EditText passwordEt;
     private Button enterBtn;
+    private Button crearcuenta;
     private Context context;
     private SharedPreferences sharedPreferences;
-
-
+    private LoginButton loginButton;
+    private CallbackManager callbackManager;
 
 
     @Override
@@ -41,6 +48,8 @@ public class LoginActivity extends AppCompatActivity {
         userEt = (EditText) findViewById(R.id.usuario);
         passwordEt = (EditText) findViewById(R.id.pass);
         enterBtn = (Button) findViewById(R.id.ingresar);
+        crearcuenta = (Button) findViewById(R.id.crearcuenta);
+
 
         //Obtengo una instancia de las SharedPreferences.
         sharedPreferences = context.getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
@@ -71,9 +80,63 @@ public class LoginActivity extends AppCompatActivity {
                 }
             });
         }
+
+
+        crearcuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //finish();
+                startActivity(new Intent(context, Registro.class));
+                //Intent intent2 = new Intent (v.getContext(), Registro.class);
+                //startActivityForResult(intent2, 0);
+            }
+        });
+
+        callbackManager = CallbackManager.Factory.create();
+        loginButton = (LoginButton) findViewById(R.id.login_button);
+        loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                gotoBuscarPor();
+            }
+
+            @Override
+            public void onCancel() {
+                //Toast.makeText(getApplicationContext(), R.string.cancel_login, Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                //Toast.makeText(getApplicationContext(), R.string.error_login, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
     }
 
+    private void OnActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+    }
 
+    /*@Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        crearcuenta = findViewById(R.id.crearcuenta);
+
+        crearcuenta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Remplazar por tu codigo", Toast.LENGTH_LONG)
+                        .show();
+            }
+        });
+
+    }
 
         /*Button ingresar = (Button) findViewById(R.id.ingresar);
         ingresar.setOnClickListener(new View.OnClickListener() {
