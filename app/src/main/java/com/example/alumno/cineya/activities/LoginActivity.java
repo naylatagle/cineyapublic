@@ -15,6 +15,8 @@ import android.widget.EditText;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.alumno.cineya.Constants;
+import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -57,6 +59,24 @@ public class LoginActivity extends AppCompatActivity {
         //Consulto por los valores de las claves que me interesan.
         String username = sharedPreferences.getString("username", "");
         String password = sharedPreferences.getString("password", "");
+        int tipo = sharedPreferences.getInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_NONE);
+        // facebook 1
+        // google 2
+        // mail 3
+
+        if(tipo == 1){
+            AccessToken accessToken = AccessToken.getCurrentAccessToken();
+            boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+            if(isLoggedIn){
+                gotoBuscarPor();
+            }
+        } else if (tipo == 2) {
+
+
+        } else if (tipo == Constants.LOGIN_TYPE_MAIL){
+            gotoBuscarPor();
+        }
+
         //Si ambas existen significa que se hizo login anteriormente.
         if(!username.isEmpty() && !password.isEmpty()) {
             //Voy al menu de busqueda
@@ -71,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
                         sharedPreferences = context.getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
                         //Guardo asincronicamente las credenciales de logueo
                         sharedPreferences.edit()
+                                .putInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_MAIL)
                                 .putString("username", userEt.getText().toString())
                                 .putString("password", passwordEt.getText().toString())
                                 .apply();
@@ -98,6 +119,10 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
+               String userId = loginResult.getAccessToken().getUserId();
+
+               //POST LOGIN CON FACEBOOK -> facebookUserId <- Datos de login
+
                 gotoBuscarPor();
             }
 
