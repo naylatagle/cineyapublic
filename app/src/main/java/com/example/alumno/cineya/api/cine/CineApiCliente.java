@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.example.alumno.cineya.api.RemoteFactory;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 import com.example.alumno.cineya.dto.Cine;
 import com.google.gson.Gson;
@@ -23,26 +24,27 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class CineApiCliente {
 
     private static Context context;
-    private static CineApi cliente;
+    private CineApi cliente;
 
-    public static void init(Context con){
+    public void init(Context con){
         context = con;
+        cliente = new RemoteFactory().createApiClient(CineApi.class);
     }
 
-    public static CineApi getClient(){
-        if(cliente == null){
-            Retrofit retrofit = new Retrofit.Builder()
-                    //.baseUrl("https://my-json-server.typicode.com/naylatagle/demo/")
-                    .baseUrl("https://vanadous-inches.000webhostapp.com/")
-                    .addConverterFactory(GsonConverterFactory.create(new Gson()))
-                    .build();
-            cliente = retrofit.create(CineApi.class);
-        }
-        return cliente;
-    }
+//    public  CineApi getClient(){
+//        if(cliente == null){
+//            Retrofit retrofit = new Retrofit.Builder()
+//                    //.baseUrl("https://my-json-server.typicode.com/naylatagle/demo/")
+//                    .baseUrl("https://vanadous-inches.000webhostapp.com/")
+//                    .addConverterFactory(GsonConverterFactory.create(new Gson()))
+//                    .build();
+//            cliente = retrofit.create(CineApi.class);
+//        }
+//        return cliente;
+//    }
 
-    public static void getCines(final OnSuccessCallback callback){
-        getClient().getCines().enqueue(new Callback<List<Cine>>() {
+    public  void getCines(final OnSuccessCallback callback){
+        cliente.getCines().enqueue(new Callback<List<Cine>>() {
             @Override
             public void onResponse(Call<List<Cine>> call, Response<List<Cine>> response) {
                 callback.execute(response.body());
