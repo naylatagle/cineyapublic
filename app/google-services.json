@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "271326249430",
+    "firebase_url": "https://cineya-c1c0a.firebaseio.com",
+    "project_id": "cineya-c1c0a",
+    "storage_bucket": "cineya-c1c0a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:271326249430:android:f25cdd9de623fb8cf82477",
+        "android_client_info": {
+          "package_name": "com.example.alumno.cineya"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "271326249430-p14ctaus6kv174qchkp326o35mpf2mlu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alumno.cineya",
+            "certificate_hash": "ca46abb2db636131d8b2bdc943d98ed08be030bd"
+          }
+        },
+        {
+          "client_id": "271326249430-f8f41hur8qn2p5osbg34pdf0ouet290m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alumno.cineya",
+            "certificate_hash": "75cba1dea05b53c25d3e43d63b636579841e030f"
+          }
+        },
+        {
+          "client_id": "271326249430-s3i19tag0e5dt5d3edd7to335he08ebn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDHFdPnrOrvTEjDfSEPI7KqhOfF-AZab0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "271326249430-s3i19tag0e5dt5d3edd7to335he08ebn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

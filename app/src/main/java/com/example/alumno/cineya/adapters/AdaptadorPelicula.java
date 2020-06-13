@@ -50,7 +50,7 @@ public class AdaptadorPelicula extends BaseAdapter{
 
     @Override
     public long getItemId(int i) {
-        return peliculaList.get(i).getNombrePelicula().hashCode();
+        return peliculaList.get(i).hashCode();
     }
 
     //Método para asignar cada elemento del lista_cines a datosCine
