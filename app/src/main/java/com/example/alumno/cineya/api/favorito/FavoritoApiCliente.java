@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.example.alumno.cineya.api.RemoteFactory;
 import com.example.alumno.cineya.dto.Cine;
+import com.example.alumno.cineya.dto.Favorito;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 
 import java.util.List;
@@ -41,15 +42,15 @@ public class FavoritoApiCliente {
 //    }
 
     public  void getFavoritos(final OnSuccessCallback callback){
-        cliente.getCines().enqueue(new Callback<List<Cine>>() {
+        cliente.getFavoritos().enqueue(new Callback<List<Favorito>>() {
             @Override
-            public void onResponse(Call<List<Cine>> call, Response<List<Cine>> response) {
+            public void onResponse(Call<List<Favorito>> call, Response<List<Favorito>> response) {
                 callback.execute(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Cine>> call, Throwable throwable) {
-                Toast.makeText(context, "Fallo en la conexión con el servidor", Toast.LENGTH_SHORT).show();
+            public void onFailure(Call<List<Favorito>> call, Throwable throwable) {
+                Toast.makeText(context, "Fallo en la conexión con el servidor Favorito", Toast.LENGTH_SHORT).show();
 
                 new Handler().postDelayed(new Runnable() {
                     @Override

@@ -1,6 +1,7 @@
 package com.example.alumno.cineya.api.favorito;
 
 import com.example.alumno.cineya.dto.Cine;
+import com.example.alumno.cineya.dto.Favorito;
 
 import java.util.List;
 
@@ -14,5 +15,5 @@ import retrofit2.http.GET;
 interface FavoritoApi {
 
         @GET("mostrarcinesandroid")
-    public Call<List<Cine>> getCines();
+    public Call<List<Favorito>> getFavoritos();
 }

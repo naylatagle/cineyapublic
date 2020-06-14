@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 logout();
                 break;
             case R.id.action_buttom_bar_favoritos:
-                mViewPager.setCurrentItem(3, true);
+                Intent intent = new Intent(MainActivity.this, Favoritos.class);
                 mDrawerLayout.closeDrawer(Gravity.LEFT, true);
                 break;
         }
