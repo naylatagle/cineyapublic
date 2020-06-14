@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Button;
 import android.content.Intent;
@@ -20,8 +19,6 @@ import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
 
 import com.example.alumno.cineya.R;
 import com.facebook.login.LoginResult;
@@ -69,12 +66,12 @@ public class LoginActivity extends AppCompatActivity {
             if(isLoggedIn){
                 gotoBuscarPor();
             }
-        } else if (tipo == Constants.LOGIN_TYPE_GMAIL) {
+            } else if (tipo == Constants.LOGIN_TYPE_GMAIL) {
 
 
-        } else if (tipo == Constants.LOGIN_TYPE_USER){
+            } else if (tipo == Constants.LOGIN_TYPE_USER){
             gotoBuscarPor();
-        }
+            }
 
         //Si el usuario existe significa que se hizo login anteriormente.
         if(!user.isEmpty()) {
@@ -103,17 +100,15 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
 
-
+        //Registro usuarios
         crearcuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //finish();
-                startActivity(new Intent(LoginActivity.this, Registro.class));
-                //Intent intent2 = new Intent (v.getContext(), Registro.class);
-                //startActivityForResult(intent2, 0);
+                startActivity(new Intent(LoginActivity.this, RegistroActivity.class));
             }
         });
 
+        //Login Facebook
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {

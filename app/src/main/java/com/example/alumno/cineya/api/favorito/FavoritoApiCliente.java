@@ -1,11 +1,11 @@
-package com.example.alumno.cineya.api.login;
+package com.example.alumno.cineya.api.favorito;
 
 import android.content.Context;
 import android.os.Handler;
 import android.widget.Toast;
 
 import com.example.alumno.cineya.api.RemoteFactory;
-import com.example.alumno.cineya.dto.Request;
+import com.example.alumno.cineya.dto.Cine;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 
 import java.util.List;
@@ -13,15 +13,19 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-/*
-public class LoginApiCliente {
+
+/**
+ * Created by Nayla on 29/11/2017.
+ */
+
+public class FavoritoApiCliente {
 
     private Context context;
-    private LoginApi cliente;
+    private FavoritoApi cliente;
 
-    public LoginApiCliente(Context context) {
+    public FavoritoApiCliente(Context context) {
         this.context = context;
-        cliente = new RemoteFactory().createApiClient(LoginApi.class);
+        cliente = new RemoteFactory().createApiClient(FavoritoApi.class);
     }
 
 //    public  CineApi getClient(){
@@ -36,16 +40,15 @@ public class LoginApiCliente {
 //        return cliente;
 //    }
 
-    public void getLogin(final OnSuccessCallback callback){
-
-        cliente.getLogin(usuario, contrasena).enqueue(new Callback<List<Request>>() {
+    public  void getFavoritos(final OnSuccessCallback callback){
+        cliente.getCines().enqueue(new Callback<List<Cine>>() {
             @Override
-            public void onResponse(Call<List<Request>> call, Response<List<Request>> response) {
+            public void onResponse(Call<List<Cine>> call, Response<List<Cine>> response) {
                 callback.execute(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Request>> call, Throwable throwable) {
+            public void onFailure(Call<List<Cine>> call, Throwable throwable) {
                 Toast.makeText(context, "Fallo en la conexión con el servidor", Toast.LENGTH_SHORT).show();
 
                 new Handler().postDelayed(new Runnable() {
@@ -59,4 +62,3 @@ public class LoginApiCliente {
         });
     }
 }
-*/

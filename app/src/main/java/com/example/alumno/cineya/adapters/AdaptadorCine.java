@@ -38,9 +38,7 @@ public class AdaptadorCine extends BaseAdapter {
     }
 
     @Override
-    public long getItemId(int i) {
-        return cineList.get(i).getNombre().hashCode();
-    }
+    public long getItemId(int i) { return cineList.get(i).getNombre().hashCode(); }
 
     //Método para asignar cada elemento del lista_cines a datosCine
     @Override

@@ -7,7 +7,6 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -20,7 +19,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class Registro extends BaseActivity implements View.OnClickListener {
+public class RegistroActivity extends BaseActivity implements View.OnClickListener {
 
     EditText etnombre,etusuario,etcontraseña,etrepcontraseña;
     Button btn_registrar;
@@ -65,12 +64,12 @@ public class Registro extends BaseActivity implements View.OnClickListener {
                     boolean success=jsonResponse.getBoolean("success");
 
                     if (success){
-                        Intent intent =new Intent(Registro.this,MainActivity.class);
-                        Registro.this.startActivity(intent);
+                        Intent intent =new Intent(RegistroActivity.this,MainActivity.class);
+                        RegistroActivity.this.startActivity(intent);
                         finishAffinity();
                     }else{
 
-                        AlertDialog.Builder builder= new AlertDialog.Builder(Registro.this);
+                        AlertDialog.Builder builder= new AlertDialog.Builder(RegistroActivity.this);
                         builder.setMessage("Error de registro")
                                 .setNegativeButton("Retry",null)
                                 .create().show();
@@ -86,7 +85,7 @@ public class Registro extends BaseActivity implements View.OnClickListener {
 
         RegistroPersonas registroPersonas=new RegistroPersonas(nombre,usuario,contrasena,repcontrasena,respoListener);
 
-        RequestQueue queue= Volley.newRequestQueue(Registro.this);
+        RequestQueue queue= Volley.newRequestQueue(RegistroActivity.this);
         queue.add(registroPersonas);
 
 

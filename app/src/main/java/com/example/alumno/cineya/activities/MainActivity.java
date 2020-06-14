@@ -110,6 +110,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
             case R.id.action_buttom_bar_logout:
                 logout();
                 break;
+            case R.id.action_buttom_bar_favoritos:
+                mViewPager.setCurrentItem(3, true);
+                mDrawerLayout.closeDrawer(Gravity.LEFT, true);
+                break;
         }
         changeDrawer(true);
         return false;

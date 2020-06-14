@@ -30,7 +30,7 @@
             android:name=".activities.MainActivity"
             android:theme="@style/ToolbarTheme" />
         <activity
-            android:name=".activities.CineBuscar"
+            android:name=".activities.Favoritos"
             android:theme="@style/ToolbarTheme" />
         <activity
 
@@ -43,7 +43,7 @@
             android:name=".activities.DetailsPelicula"
             android:theme="@style/ToolbarTheme" />
 
-        <activity android:name=".activities.Registro"/>
+        <activity android:name=".activities.RegistroActivity"/>
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

@@ -10,13 +10,11 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.alumno.cineya.R;
-import com.example.alumno.cineya.activities.CineBuscar;
-import com.example.alumno.cineya.activities.PeliculaBuscar;
+import com.example.alumno.cineya.activities.Favoritos;
 import com.example.alumno.cineya.adapters.AdaptadorCine;
 import com.example.alumno.cineya.adapters.base.IAdapterClickListener;
 import com.example.alumno.cineya.api.cine.CineApiCliente;
 import com.example.alumno.cineya.dto.Cine;
-import com.example.alumno.cineya.dto.Pelicula;
 import com.example.alumno.cineya.fragments.base.BaseFragment;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 import com.google.gson.Gson;
@@ -76,7 +74,7 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
     public void onClick(Cine object) {
         Toast.makeText(getApplicationContext(), object.getNombre(), Toast.LENGTH_SHORT).show();
         if(getActivity()!=null) {
-            Intent intent = new Intent(getActivity(), CineBuscar.class);
+            Intent intent = new Intent(getActivity(), Favoritos.class);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
             String cineSerializado = new Gson().toJson(object);

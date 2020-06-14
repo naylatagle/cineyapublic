@@ -1,22 +1,23 @@
 package com.example.alumno.cineya.activities;
 
 import android.os.Bundle;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.alumno.cineya.R;
 import com.example.alumno.cineya.activities.base.BaseActivity;
-import com.example.alumno.cineya.adapters.AdaptadorCine;
-import com.example.alumno.cineya.api.cine.CineApiCliente;
-import com.example.alumno.cineya.dto.Cine;
+import com.example.alumno.cineya.adapters.AdaptadorFavorito;
+import com.example.alumno.cineya.api.favorito.FavoritoApiCliente;
+import com.example.alumno.cineya.dto.Favorito;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 
 import java.util.List;
 
-public class CineBuscar extends BaseActivity {
+public class Favoritos extends BaseActivity {
 
     @Override
     protected void setContentView() {
-        setContentView(R.layout.buscar_cine);
+        setContentView(R.layout.activity_favoritos);
     }
 
     @Override
@@ -25,11 +26,11 @@ public class CineBuscar extends BaseActivity {
 
         showLoading();
 
-        new CineApiCliente(getApplicationContext()).getCines(new OnSuccessCallback() {
+        new FavoritoApiCliente(getApplicationContext()).getFavoritos(new OnSuccessCallback() {
             @Override
             public void execute(Object body) {
-                ListView cineC = (ListView) findViewById(R.id.listaCines);
-                cineC.setAdapter(new AdaptadorCine(getBaseContext(), (List<Cine>) body));
+                ListView favoritoF = (ListView) findViewById(R.id.listaCines);
+                favoritoF.setAdapter((ListAdapter) new AdaptadorFavorito(getBaseContext(), (List<Favorito>) body));
                 hideLoading();
             }
         });;
