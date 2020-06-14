@@ -42,14 +42,14 @@ public class FavoritoApiCliente {
 //    }
 
     public  void getFavoritos(final OnSuccessCallback callback){
-        cliente.getFavoritos().enqueue(new Callback<List<Favorito>>() {
+        cliente.getFavoritos().enqueue(new Callback<List<Cine>>() {
             @Override
-            public void onResponse(Call<List<Favorito>> call, Response<List<Favorito>> response) {
+            public void onResponse(Call<List<Cine>> call, Response<List<Cine>> response) {
                 callback.execute(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Favorito>> call, Throwable throwable) {
+            public void onFailure(Call<List<Cine>> call, Throwable throwable) {
                 Toast.makeText(context, "Fallo en la conexión con el servidor Favorito", Toast.LENGTH_SHORT).show();
 
                 new Handler().postDelayed(new Runnable() {

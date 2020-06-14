@@ -1,23 +1,24 @@
 package com.example.alumno.cineya.activities;
 
 import android.os.Bundle;
-import android.widget.ListAdapter;
 import android.widget.ListView;
 
 import com.example.alumno.cineya.R;
 import com.example.alumno.cineya.activities.base.BaseActivity;
-import com.example.alumno.cineya.adapters.AdaptadorFavorito;
+import com.example.alumno.cineya.adapters.AdaptadorCine;
 import com.example.alumno.cineya.api.favorito.FavoritoApiCliente;
-import com.example.alumno.cineya.dto.Favorito;
+import com.example.alumno.cineya.dto.Cine;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 
 import java.util.List;
 
-public class Favoritos extends BaseActivity {
+public class Favoritos extends BaseActivity implements AdaptadorCine.CineClickListener{
+
+    private AdaptadorCine mAdapter;
 
     @Override
     protected void setContentView() {
-        setContentView(R.layout.activity_favoritos);
+        setContentView(R.layout.buscar_cine);
     }
 
     @Override
@@ -25,12 +26,14 @@ public class Favoritos extends BaseActivity {
         super.onCreate(savedInstanceState);
 
         showLoading();
-
+        ListView favoritoF = (ListView) findViewById(R.id.listaCines);
+        mAdapter = new AdaptadorCine(getApplicationContext());
+        mAdapter.setClickListener(this);
+        favoritoF.setAdapter(mAdapter);
         new FavoritoApiCliente(getApplicationContext()).getFavoritos(new OnSuccessCallback() {
             @Override
             public void execute(Object body) {
-                ListView favoritoF = (ListView) findViewById(R.id.listaCines);
-                favoritoF.setAdapter((ListAdapter) new AdaptadorFavorito(getBaseContext(), (List<Favorito>) body));
+                mAdapter.setList((List<Cine>) body);
                 hideLoading();
             }
         });;
@@ -53,4 +56,14 @@ public class Favoritos extends BaseActivity {
    */
     }
 
+    @Override
+    public void addFavorite(Cine cine, int position) {
+        //TODO metodo de la api para mandar al servidor que lo saque como favorito.
+        //TODO cambio el icono y actualizo la lista a contirnuacion
+
+        if(cine!=null && mAdapter != null){
+            cine.setEsFavorito(!cine.isEsFavorito());
+            mAdapter.removeFavorite(cine, position);
+        }
+    }
 }

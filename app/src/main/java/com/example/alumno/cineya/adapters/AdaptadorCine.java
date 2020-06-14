@@ -45,6 +45,13 @@ public class AdaptadorCine extends BaseAdapter {
         }
     }
 
+    public void removeFavorite(Cine cine, int position){
+        if(cineList!=null && cine !=null && position >=0 && position < cineList.size()){
+            cineList.remove(position);
+            this.notifyDataSetChanged();
+        }
+    }
+
     @Override
     public int getCount() {
             return cineList == null ? 0 : cineList.size();

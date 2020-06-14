@@ -15,5 +15,5 @@ import retrofit2.http.GET;
 interface FavoritoApi {
 
         @GET("mostrarcinesandroid")
-    public Call<List<Favorito>> getFavoritos();
+    public Call<List<Cine>> getFavoritos();
 }
