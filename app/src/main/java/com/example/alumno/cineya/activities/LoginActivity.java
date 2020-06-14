@@ -1,33 +1,37 @@
 package com.example.alumno.cineya.activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
-//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 import android.widget.Button;
-import android.content.Intent;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.alumno.cineya.Constants;
+import com.example.alumno.cineya.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
-import com.facebook.FacebookSdk;
-import com.facebook.appevents.AppEventsLogger;
-
-import com.example.alumno.cineya.R;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.SignInButton;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
 
 public class LoginActivity extends AppCompatActivity {
+
+    private final static int GOOGLE_LOGIN_REQUEST_CODE = 134;
 
     private EditText userEt;
     private EditText passwordEt;
@@ -38,6 +42,8 @@ public class LoginActivity extends AppCompatActivity {
     private LoginButton loginButton;
     private CallbackManager callbackManager;
 
+    private SignInButton mBtnGoogleSignIn;
+    private GoogleSignInClient mGoogleSignInClient;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +58,7 @@ public class LoginActivity extends AppCompatActivity {
         passwordEt = (EditText) findViewById(R.id.pass);
         enterBtn = (Button) findViewById(R.id.ingresar);
         crearcuenta = (Button) findViewById(R.id.crearcuenta);
+        mBtnGoogleSignIn = (SignInButton) findViewById(R.id.logingoogle);
 
 
         //Obtengo una instancia de las SharedPreferences.
@@ -68,12 +75,27 @@ public class LoginActivity extends AppCompatActivity {
             boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
             if(isLoggedIn){
                 gotoBuscarPor();
+            } else {
+                laSesionConLasRedesYaNoEsValidaTengoQueBorrarUsuarioGuardado();
             }
         } else if (tipo == Constants.LOGIN_TYPE_GMAIL) {
-
+            GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+            if(account!=null)
+                gotoBuscarPor();
+            else {
+                laSesionConLasRedesYaNoEsValidaTengoQueBorrarUsuarioGuardado();
+            }
 
         } else if (tipo == Constants.LOGIN_TYPE_USER){
             gotoBuscarPor();
+        } else{
+            //SI NO ESTOY LOGUEADO PUEDO INICIALIZAR COSAS DEL LOGIN
+            GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                    .requestEmail()
+                    .requestId()
+                    .build();
+            mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
         }
 
         //Si el usuario existe significa que se hizo login anteriormente.
@@ -140,13 +162,44 @@ public class LoginActivity extends AppCompatActivity {
         });
 
 
+        mBtnGoogleSignIn.setOnClickListener(getGoogleSignInClickListener());
 
+    }
+
+    private View.OnClickListener getGoogleSignInClickListener() {
+        return v -> {
+            Intent signInInten = mGoogleSignInClient.getSignInIntent();
+            startActivityForResult(signInInten, GOOGLE_LOGIN_REQUEST_CODE);
+        };
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                if(account!=null && !account.isExpired()) {
+                    String mail = account.getEmail();
+                    String userId = account.getId();
+
+//TODO POST LOGIN CON GOOGLE -> Pedi mail y userId
+                    sharedPreferences.edit().putInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_GMAIL).apply();
+
+                    gotoBuscarPor();
+                } else {
+                    Toast.makeText(LoginActivity.this,
+                            String.format("Ocurrio un error..."), Toast.LENGTH_LONG).show();
+                }
+
+            } catch (ApiException e) {
+                Toast.makeText(LoginActivity.this,
+                        String.format("Error: %s", e.getMessage()), Toast.LENGTH_LONG).show();
+            }
+
+        }
     }
 
 
@@ -161,6 +214,9 @@ public class LoginActivity extends AppCompatActivity {
         return username.equals("Cine") && password.equals("Ya");
     }
 
+    private void laSesionConLasRedesYaNoEsValidaTengoQueBorrarUsuarioGuardado() {
+        //TODO ver aca. limpiar datos locales del usuario
+    }
 
     /*@Override
     protected void onCreate(Bundle savedInstanceState) {

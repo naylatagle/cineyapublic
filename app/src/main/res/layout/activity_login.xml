@@ -56,12 +56,15 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/ingresar"
-        android:layout_alignRight="@+id/ingresar"
         android:layout_centerHorizontal="true"
         android:fontFamily="sans-serif"
         android:text="Crear cuenta"
         android:textColor="#0000FF"
-        android:textSize="15sp" />
+        android:textSize="15sp"
+        android:layout_alignEnd="@id/ingresar"
+        android:layout_alignLeft="@+id/ingresar"
+        android:layout_alignStart="@+id/ingresar"
+        android:layout_alignRight="@id/ingresar" />
 
 
     <com.facebook.login.widget.LoginButton
@@ -72,7 +75,11 @@
         android:layout_below="@+id/crearcuenta"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="30dp" />
+        android:layout_marginBottom="10dp"
+        android:layout_alignStart="@+id/usuario"
+        android:layout_alignLeft="@+id/usuario"
+        android:layout_alignEnd="@+id/usuario"
+        android:layout_alignRight="@+id/usuario"/>
 
 
 
@@ -87,17 +94,15 @@
         android:layout_alignRight="@+id/login_button"
         android:layout_gravity="center_horizontal" />
 
-    <ImageView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="190dp"
-        android:layout_height="2dp"
-        android:layout_below="@+id/ingresar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:scaleType="fitXY"
-        android:src="@android:drawable/divider_horizontal_bright"
-
-        android:visibility="visible" />
+<!--    <ImageView-->
+<!--        android:layout_width="190dp"-->
+<!--        android:layout_height="2dp"-->
+<!--        android:layout_below="@+id/ingresar"-->
+<!--        android:layout_centerHorizontal="true"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:scaleType="fitXY"-->
+<!--        android:src="@android:drawable/divider_horizontal_bright"-->
+<!--        android:visibility="visible" />-->
 
 </RelativeLayout>
 
