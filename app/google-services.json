@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "271326249430-i8og2g63s9jo39vlk7q896o0maffm7uo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.alumno.cineya",
+            "certificate_hash": "50fa49e148180533ad5a12de56c4766360acb15b"
+          }
+        },
+        {
           "client_id": "271326249430-p14ctaus6kv174qchkp326o35mpf2mlu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

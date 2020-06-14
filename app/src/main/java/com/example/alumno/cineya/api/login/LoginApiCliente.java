@@ -37,7 +37,8 @@ public class LoginApiCliente {
 //    }
 
     public void getLogin(final OnSuccessCallback callback){
-
+        String usuario = "";
+        String contrasena = "";
         cliente.getLogin(usuario, contrasena).enqueue(new Callback<List<Request>>() {
             @Override
             public void onResponse(Call<List<Request>> call, Response<List<Request>> response) {
