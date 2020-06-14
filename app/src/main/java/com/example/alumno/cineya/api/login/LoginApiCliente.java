@@ -5,6 +5,7 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import com.example.alumno.cineya.api.RemoteFactory;
+import com.example.alumno.cineya.dto.LoginRequest;
 import com.example.alumno.cineya.dto.User;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 
@@ -36,8 +37,11 @@ public class LoginApiCliente {
 //        return cliente;
 //    }
 
-    public void getLogin(final OnSuccessCallback<User> callback, String usuario, String pass){
-        cliente.getLogin(usuario, pass).enqueue(new Callback<User>() {
+    public void getLogin(final OnSuccessCallback<User> callback, String usuario, String contrasena){
+        LoginRequest request = new LoginRequest();
+        request.setUsuario(usuario);
+        request.setContrasena(contrasena);
+        cliente.getLogin(request).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 callback.execute(response.body());

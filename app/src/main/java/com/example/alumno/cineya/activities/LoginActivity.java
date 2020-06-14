@@ -199,7 +199,7 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(context, MainActivity.class));
     }
 
-    private void loginUsername(String username, String password) {
+    private void loginUsername(String usuario, String contrasena) {
 
         new LoginApiCliente(getApplicationContext()).getLogin(body -> {
             if(body.isSuccess()) {
@@ -216,7 +216,7 @@ public class LoginActivity extends AppCompatActivity {
             } else {
                 Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
             }
-        }, username, password);
+        }, usuario, contrasena);
 
        /* new LoginApiCliente(getContext()).getCines(new OnSuccessCallback() {
             @Override
@@ -225,7 +225,7 @@ public class LoginActivity extends AppCompatActivity {
                 cineC.setAdapter(new AdaptadorCine(getContext(), (List<Cine>) body));
                 hideLoading();
             }*/
-//        return username.equals("Cine") && password.equals("Ya");
+//        return usuario.equals("Cine") && password.equals("Ya");
     }
 
     private void laSesionConLasRedesYaNoEsValidaTengoQueBorrarUsuarioGuardado() {
