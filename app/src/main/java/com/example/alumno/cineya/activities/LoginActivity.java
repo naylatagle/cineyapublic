@@ -57,28 +57,27 @@ public class LoginActivity extends AppCompatActivity {
         //Obtengo una instancia de las SharedPreferences.
         sharedPreferences = context.getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
         //Consulto por los valores de las claves que me interesan.
-        String username = sharedPreferences.getString("username", "");
-        String password = sharedPreferences.getString("password", "");
-        int tipo = sharedPreferences.getInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_NONE);
-        // facebook 1
-        // google 2
-        // mail 3
+        String user = sharedPreferences.getString("user", "");
+        String name = sharedPreferences.getString("name", "");
+        String id_user = sharedPreferences.getString("id_user", "");
 
-        if(tipo == 1){
+        int tipo = sharedPreferences.getInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_NONE);
+
+        if(tipo == Constants.LOGIN_TYPE_FACEBOOK){
             AccessToken accessToken = AccessToken.getCurrentAccessToken();
             boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
             if(isLoggedIn){
                 gotoBuscarPor();
             }
-        } else if (tipo == 2) {
+        } else if (tipo == Constants.LOGIN_TYPE_GMAIL) {
 
 
-        } else if (tipo == Constants.LOGIN_TYPE_MAIL){
+        } else if (tipo == Constants.LOGIN_TYPE_USER){
             gotoBuscarPor();
         }
 
-        //Si ambas existen significa que se hizo login anteriormente.
-        if(!username.isEmpty() && !password.isEmpty()) {
+        //Si el usuario existe significa que se hizo login anteriormente.
+        if(!user.isEmpty()) {
             //Voy al menu de busqueda
             gotoBuscarPor();
         } else {
@@ -87,15 +86,16 @@ public class LoginActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View view) {
                     if (isLoginSuccessful(userEt.getText().toString(), passwordEt.getText().toString())) {
-                        //persistencia resuleta con SharedPreferences
+                        //persistencia resuelta con SharedPreferences
                         sharedPreferences = context.getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
                         //Guardo asincronicamente las credenciales de logueo
                         sharedPreferences.edit()
-                                .putInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_MAIL)
-                                .putString("username", userEt.getText().toString())
-                                .putString("password", passwordEt.getText().toString())
+                                .putInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_USER)
+                                .putString("user", userEt.getText().toString())
+                                .putString("name", passwordEt.getText().toString())
+                                .putString("id_user", passwordEt.getText().toString())
                                 .apply();
-                        gotoBuscarPor();
+                                gotoBuscarPor();
                     } else {
                         Toast.makeText(getApplicationContext(),"Usuario incorrecto", Toast.LENGTH_SHORT).show();
                     }
@@ -124,6 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                //POST LOGIN CON FACEBOOK -> facebookUserId <- Datos de login
 
                 gotoBuscarPor();
+                loginResult.getAccessToken().getUserId();
             }
 
             @Override
@@ -147,6 +148,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
+    private void gotoBuscarPor() {
+        //Llamo al ciclo de cierre del LoginActivity.
+        finish();
+        //Redirijo hacia el LoginActivity.
+        startActivity(new Intent(context, MainActivity.class));
+    }
+
+    private boolean isLoginSuccessful(String username, String password) {
+        return username.equals("Cine") && password.equals("Ya");
+    }
+
 
     /*@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -182,17 +196,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }*/
-
-    private void gotoBuscarPor() {
-        //Llamo al ciclo de cierre del LoginActivity.
-        finish();
-        //Redirijo hacia el LoginActivity.
-        startActivity(new Intent(context, MainActivity.class));
-    }
-
-    private boolean isLoginSuccessful(String username, String password) {
-        return username.equals("Cine") && password.equals("Ya");
-    }
 
 
 
