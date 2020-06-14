@@ -132,7 +132,7 @@ public class LoginActivity extends AppCompatActivity {
             });
         }
 
-
+        // Crear Cuenta
         crearcuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -142,6 +142,8 @@ public class LoginActivity extends AppCompatActivity {
                 //startActivityForResult(intent2, 0);
             }
         });
+
+        // Login con Facebook
 
         callbackManager = CallbackManager.Factory.create();
         loginButton = (LoginButton) findViewById(R.id.login_button);
@@ -172,7 +174,7 @@ public class LoginActivity extends AppCompatActivity {
         mBtnGoogleSignIn.setOnClickListener(getGoogleSignInClickListener());
 
     }
-
+    // Login con Google
     private View.OnClickListener getGoogleSignInClickListener() {
         return v -> {
             Intent signInInten = mGoogleSignInClient.getSignInIntent();
@@ -192,7 +194,7 @@ public class LoginActivity extends AppCompatActivity {
                     String mail = account.getEmail();
                     String userId = account.getId();
 
-//TODO POST LOGIN CON GOOGLE -> Pedi mail y userId
+                    //TODO POST LOGIN CON GOOGLE -> Pedi mail y userId
                     sharedPreferences.edit().putInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_GMAIL).apply();
 
                     gotoBuscarPor();
@@ -217,16 +219,16 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(context, MainActivity.class));
     }
 
-    private boolean isLoginSuccessful(/*String username, String password*/) {
+    private boolean isLoginSuccessful(String username, String password) {
 
-        new LoginApiCliente(getContext()).getLogin(new OnSuccessCallback() {
+       /* new LoginApiCliente(getContext()).getCines(new OnSuccessCallback() {
             @Override
             public void execute(Object body) {
 
                 cineC.setAdapter(new AdaptadorCine(getContext(), (List<Cine>) body));
                 hideLoading();
-            }
-        //return username.equals("Cine") && password.equals("Ya");
+            }*/
+        return username.equals("Cine") && password.equals("Ya");
     }
 
     private void laSesionConLasRedesYaNoEsValidaTengoQueBorrarUsuarioGuardado() {
