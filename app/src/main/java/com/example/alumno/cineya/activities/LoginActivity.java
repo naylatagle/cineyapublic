@@ -15,6 +15,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.alumno.cineya.Constants;
 import com.example.alumno.cineya.R;
+import com.example.alumno.cineya.adapters.AdaptadorCine;
+import com.example.alumno.cineya.api.cine.CineApiCliente;
+import com.example.alumno.cineya.api.login.LoginApiCliente;
+import com.example.alumno.cineya.dto.Cine;
+import com.example.alumno.cineya.helpers.OnSuccessCallback;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -28,6 +33,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
+
+import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -119,7 +126,7 @@ public class LoginActivity extends AppCompatActivity {
                                 .apply();
                                 gotoBuscarPor();
                     } else {
-                        Toast.makeText(getApplicationContext(),"Usuario incorrecto", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),"Usuario Incorrecto", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
@@ -210,8 +217,16 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(context, MainActivity.class));
     }
 
-    private boolean isLoginSuccessful(String username, String password) {
-        return username.equals("Cine") && password.equals("Ya");
+    private boolean isLoginSuccessful(/*String username, String password*/) {
+
+        new LoginApiCliente(getContext()).getLogin(new OnSuccessCallback() {
+            @Override
+            public void execute(Object body) {
+
+                cineC.setAdapter(new AdaptadorCine(getContext(), (List<Cine>) body));
+                hideLoading();
+            }
+        //return username.equals("Cine") && password.equals("Ya");
     }
 
     private void laSesionConLasRedesYaNoEsValidaTengoQueBorrarUsuarioGuardado() {

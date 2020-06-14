@@ -63,7 +63,7 @@ public class PeliculaApiCliente {
                         //Cierre del programa (App)
                         System.exit(0);
                     }
-                }, 2000); //Especifico un delay de 2 segundos ( 2000 milisegundos )
+                }, 10000); //Especifico un delay de 2 segundos ( 2000 milisegundos )
             }
         });
     }
