@@ -130,7 +130,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //finish();
-                startActivity(new Intent(LoginActivity.this, Registro.class));
+                startActivity(new Intent(LoginActivity.this, RegistroActivity.class));
                 //Intent intent2 = new Intent (v.getContext(), Registro.class);
                 //startActivityForResult(intent2, 0);
             }

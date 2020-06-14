@@ -37,11 +37,10 @@ public class PeliculaBuscarFragment extends BaseFragment implements IAdapterClic
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        final ListView peliP = (ListView) view.findViewById(R.id.listaPeliculas);
-        PeliculaApiCliente.init(getApplicationContext());
 
-        showLoading();
-        PeliculaApiCliente.getPeliculas(new OnSuccessCallback() {
+        final ListView peliP = (ListView) view.findViewById(R.id.listaPeliculas);
+
+        new PeliculaApiCliente (getContext()).getPeliculas(new OnSuccessCallback() {
             @Override
             public void execute(Object body) {
 
@@ -49,6 +48,8 @@ public class PeliculaBuscarFragment extends BaseFragment implements IAdapterClic
                 hideLoading();
             }
         });
+
+        showLoading();
     }
 
     @Override

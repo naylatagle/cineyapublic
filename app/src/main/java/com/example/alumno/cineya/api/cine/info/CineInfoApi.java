@@ -13,6 +13,6 @@ import retrofit2.http.GET;
 
 interface CineInfoApi {
 
-    @GET("cineinfo")
+    @GET("cuarentenaandroid")
     public Call<List<CineInfo>> getInfoCines();
 }

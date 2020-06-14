@@ -43,7 +43,7 @@ public class CineApiCliente {
 //        return cliente;
 //    }
 
-    public  void getCines(final OnSuccessCallback callback){
+    public void getCines(final OnSuccessCallback callback){
         cliente.getCines().enqueue(new Callback<List<Cine>>() {
             @Override
             public void onResponse(Call<List<Cine>> call, Response<List<Cine>> response) {

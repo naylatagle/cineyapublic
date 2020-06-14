@@ -4,6 +4,8 @@ public class CineInfo {
 
     private String opcionPelicula;
     private String horarioPelicula;
+    private String mensaje;
+
 
     public String getOpcionPelicula(){
         return opcionPelicula;
@@ -20,4 +22,8 @@ public class CineInfo {
     public void setHorarioPelicula(String horarioPelicula) {
         this.horarioPelicula = horarioPelicula;
     }
+
+    public String getMensaje() { return mensaje; }
+
+    public void setMensaje(String mensaje) { this.mensaje = mensaje; }
 }

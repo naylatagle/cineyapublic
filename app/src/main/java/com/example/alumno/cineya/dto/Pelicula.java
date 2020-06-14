@@ -5,6 +5,7 @@ public class Pelicula {
     private int logoPelicula;
     private String nombrePelicula;
     private String generoPelicula;
+    private String mensaje;
 
     /*public Pelicula(int logo, String nombre, String genero){
         logoPelicula = logo;
@@ -35,4 +36,9 @@ public class Pelicula {
     public String getGeneroPelicula() {
         return generoPelicula;
     }
+
+    public String getMensaje() { return mensaje; }
+
+    public void setMensaje(String mensaje) { this.mensaje = mensaje; }
+
 }

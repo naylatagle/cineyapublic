@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.example.alumno.cineya.api.RemoteFactory;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 import com.example.alumno.cineya.dto.CineInfo;
 import com.google.gson.Gson;
@@ -22,10 +23,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class CineInfoApiCliente {
 
-    private static Context context;
-    private static CineInfoApi cliente;
+    private Context context;
+    private CineInfoApi cliente;
 
-    public static void init(Context con){
+    public CineInfoApiCliente(Context context) {
+        this.context = context;
+        cliente = new RemoteFactory().createApiClient(CineInfoApi.class);
+    }
+
+    /*public static void init(Context con){
         context = con;
     }
 
@@ -38,10 +44,10 @@ public class CineInfoApiCliente {
             cliente = retrofit.create(CineInfoApi.class);
         }
         return cliente;
-    }
+    }*/
 
-    public static void getInfoCines(final OnSuccessCallback callback){
-        getClient().getInfoCines().enqueue(new Callback<List<CineInfo>>() {
+    public void getInfoCines(final OnSuccessCallback callback){
+        cliente.getInfoCines().enqueue(new Callback<List<CineInfo>>() {
             @Override
             public void onResponse(Call<List<CineInfo>> call, Response<List<CineInfo>> response) {
                 callback.execute(response.body());

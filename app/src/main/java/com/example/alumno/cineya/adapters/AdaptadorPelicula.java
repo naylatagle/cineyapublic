@@ -63,6 +63,7 @@ public class AdaptadorPelicula extends BaseAdapter{
         ImageView LogoPelicula = (ImageView) peliculaView.findViewById(R.id.logoPelicula);
         TextView NombrePelicula = (TextView) peliculaView.findViewById(R.id.nombrePelicula);
         TextView GeneroPelicula = (TextView) peliculaView.findViewById(R.id.generoPelicula);
+        TextView Mensaje = (TextView) peliculaView.findViewById(R.id.mensaje);
 
         final Pelicula pelicula = peliculaList.get(i);
         try {
@@ -74,6 +75,8 @@ public class AdaptadorPelicula extends BaseAdapter{
         NombrePelicula.setText(peliculaList.get(i).getNombrePelicula());
 
         GeneroPelicula.setText(peliculaList.get(i).getGeneroPelicula());
+
+        Mensaje.setText(peliculaList.get(i).getMensaje());
 
         if(mListener!=null) {
 

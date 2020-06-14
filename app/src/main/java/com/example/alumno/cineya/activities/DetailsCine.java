@@ -7,6 +7,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.alumno.cineya.R;
+import com.example.alumno.cineya.activities.base.BaseActivity;
 import com.example.alumno.cineya.adapters.AdaptadorCine;
 import com.example.alumno.cineya.adapters.AdaptadorCineInfo;
 import com.example.alumno.cineya.api.cine.CineApiCliente;
@@ -19,31 +20,37 @@ import com.google.gson.Gson;
 import java.util.List;
 
 
-public class DetailsCine extends Activity {
+public class DetailsCine extends BaseActivity {
+
+    @Override
+    protected void setContentView() {
+        setContentView(R.layout.cine_details);
+    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.cine_details);
 
-        CineInfoApiCliente.init(getApplicationContext());
+        showLoading();
 
-        final ProgressDialog progressDialog = ProgressDialog.show(this, "CineInfo",
-                "Obteniendo la información", true, false);
-        CineInfoApiCliente.getInfoCines(new OnSuccessCallback() {
+
+        new CineInfoApiCliente(getApplicationContext()).getInfoCines(new OnSuccessCallback() {
             @Override
             public void execute(Object body) {
                 ListView cineC = (ListView) findViewById(R.id.listaCineInfo);
                 cineC.setAdapter(new AdaptadorCineInfo(getBaseContext(), (List<CineInfo>) body));
-                progressDialog.dismiss();
+                hideLoading();
             }
-        });
+        });;
+
+        /*final ProgressDialog progressDialog = ProgressDialog.show(this, "CineInfo",
+                "Obteniendo la información", true, false);*/
 
         Bundle extras = getIntent().getExtras();
 
         //titulo del cine
-        String cineSerializado = getIntent().getExtras().getString("cine");
-        Cine cine = new Gson().fromJson(cineSerializado, Cine.class);
+        //String cineSerializado = getIntent().getExtras().getString("cine");
+        //Cine cine = new Gson().fromJson(cineSerializado, Cine.class);
 
 //        String cineInfoSerializado = getIntent().getExtras().getString("cineInfo");
 //        CineInfo cineInfo = new Gson().fromJson(cineInfoSerializado, CineInfo.class);

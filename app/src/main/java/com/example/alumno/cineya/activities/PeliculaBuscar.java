@@ -23,19 +23,28 @@ public class PeliculaBuscar extends BaseActivity {
     public void onCreate (Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         //requestWindowFeature(Window.FEATURE_NO_TITLE); //para sacar el titulo
-        setContentView(R.layout.buscar_pelicula);
-
-        PeliculaApiCliente.init(getApplicationContext());
+        //setContentView(R.layout.buscar_pelicula);
 
         showLoading();
-        PeliculaApiCliente.getPeliculas(new OnSuccessCallback() {
+
+
+        new PeliculaApiCliente(getApplicationContext()).getPeliculas(new OnSuccessCallback() {
+            @Override
+            public void execute(Object body) {
+                ListView peliP = (ListView) findViewById(R.id.listaPeliculas);
+                peliP.setAdapter(new AdaptadorPelicula(getBaseContext(), (List<Pelicula>) body));
+                hideLoading();
+            };
+        });
+
+        /*PeliculaApiCliente.getPeliculas(new OnSuccessCallback() {
             @Override
             public void execute(Object body) {
                 ListView peliP = (ListView) findViewById(R.id.listaPeliculas);
                 peliP.setAdapter(new AdaptadorPelicula(getBaseContext(), (List<Pelicula>) body));
                 hideLoading();
             }
-        });
+        });*/
 
         Bundle extras = getIntent().getExtras();
 

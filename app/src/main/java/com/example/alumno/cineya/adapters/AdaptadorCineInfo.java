@@ -50,11 +50,14 @@ public class AdaptadorCineInfo extends BaseAdapter {
 
         TextView OpcionPelicula = (TextView) cineInfoView.findViewById(R.id.opcionPelicula);
         TextView HorarioPelicula = (TextView) cineInfoView.findViewById(R.id.horarioPelicula);
+        TextView Mensaje = (TextView) cineInfoView.findViewById(R.id.mensaje);
 
         CineInfo cineInfo = cineInfoList.get(i);
 
         OpcionPelicula.setText(cineInfoList.get(i).getOpcionPelicula());
         HorarioPelicula.setText(cineInfoList.get(i).getHorarioPelicula());
+
+        Mensaje.setText(cineInfoList.get(i).getMensaje());
 
         cineInfoView.setOnClickListener(new CineInfoOnClickListener(context, cineInfo));
 

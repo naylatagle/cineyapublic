@@ -4,7 +4,6 @@
 
     <TextView
         android:id="@+id/nombre_cine"
-        android:text="Cine_id"
         android:layout_width="250dp"
         android:layout_height="50dp"
         android:layout_marginLeft="25dp"
@@ -20,5 +19,12 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="30dp"
         android:id="@+id/listaCineInfo"/>
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mensaje"
+        android:textSize="14dp"
+        android:textStyle="normal"/>
 
 </RelativeLayout>
