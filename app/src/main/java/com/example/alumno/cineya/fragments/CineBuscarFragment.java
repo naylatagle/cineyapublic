@@ -24,11 +24,12 @@ import java.util.List;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 
-public class CineBuscarFragment extends BaseFragment implements IAdapterClickListener<Cine> {
+public class CineBuscarFragment extends BaseFragment implements IAdapterClickListener<Cine>, AdaptadorCine.CineClickListener{
 
     public static CineBuscarFragment newInstance(){
         return new CineBuscarFragment();
     }
+    private AdaptadorCine mAdapter;
 
     @Override
     protected int getLayout() {
@@ -42,12 +43,14 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
         final ListView cineC = (ListView) view.findViewById(R.id.listaCines);
 
         showLoading();
-
+        mAdapter = new AdaptadorCine(getContext());
+        mAdapter.setClickListener(this);
+        cineC.setAdapter(mAdapter);
         new CineApiCliente (getContext()).getCines(new OnSuccessCallback() {
             @Override
             public void execute(Object body) {
+               mAdapter.setList((List<Cine>) body);
 
-                cineC.setAdapter(new AdaptadorCine(getContext(), (List<Cine>) body));
                 hideLoading();
             }
         });;
@@ -83,4 +86,15 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
         }
     }
 
+    @Override
+    public void addFavorite(Cine cine, int position) {
+        //TODO metodo de la api para mandar al servidor el cine favorito.
+        //TODO cambio el icono y actualizo la lista a contirnuacion
+
+        if(cine!=null && mAdapter != null){
+            cine.setEsFavorito(!cine.isEsFavorito());
+            mAdapter.changePosition(cine, position);
+        }
+
+    }
 }

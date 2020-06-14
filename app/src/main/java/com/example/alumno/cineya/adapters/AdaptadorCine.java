@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,18 +19,35 @@ public class AdaptadorCine extends BaseAdapter {
 
     private Context context;
     private List<Cine> cineList;
-
-    public AdaptadorCine(){}
+    private CineClickListener mClickListener;
+    public AdaptadorCine(Context context){
+        this.context = context;
+    }
 
     public AdaptadorCine(Context context, List<Cine> cineList){
         this.context = context;
         this.cineList = cineList;
     }
 
+    public void setClickListener(CineClickListener listener){
+        this.mClickListener = listener;
+    }
+
+    public void setList(List<Cine> cineList){
+        this.cineList = cineList;
+        notifyDataSetChanged();
+    }
+
+    public void changePosition(Cine cine, int position){
+        if(cineList!=null && cine !=null && position >=0 && position < cineList.size()){
+            cineList.set(position, cine);
+            this.notifyDataSetChanged();
+        }
+    }
 
     @Override
     public int getCount() {
-            return cineList.size();
+            return cineList == null ? 0 : cineList.size();
     }
 
     @Override
@@ -54,17 +72,32 @@ public class AdaptadorCine extends BaseAdapter {
 
         TextView direccionC = (TextView) cineView.findViewById(R.id.direccionCine);
 
+        ImageButton isFavorite = (ImageButton) cineView.findViewById(R.id.is_favorite);
+
         Cine cine = cineList.get(i);
 
-        logoC.setImageResource(cineList.get(i).getLogoCine());
-        nombreC.setText(cineList.get(i).getNombre());
-        direccionC.setText(cineList.get(i).getDireccion());
+        logoC.setImageResource(cine.getLogoCine());
+        nombreC.setText(cine.getNombre());
+        direccionC.setText(cine.getDireccion());
+        isFavorite.setImageResource(cine.isEsFavorito() ? R.drawable.ic_favorite_ok : R.drawable.ic_favorite_no);
+
+        isFavorite.setOnClickListener(getClickFavorite(cine, i));
 
         cineView.setOnClickListener(new CineOnClickListener(context, cine));
 
         return cineView;
     }
 
+    private View.OnClickListener getClickFavorite(final Cine cine, final int position) {
+        return v -> {
+            if(mClickListener!=null){
+                mClickListener.addFavorite(cine, position);
+            }
+        };
+    }
 
+    public interface CineClickListener{
+        void addFavorite(Cine cine, final int position);
+    }
 
 }
