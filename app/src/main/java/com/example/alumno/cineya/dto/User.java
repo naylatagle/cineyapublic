@@ -1,10 +1,18 @@
 package com.example.alumno.cineya.dto;
 
-public class Request {
+public class User {
+
+    boolean success;
+
+    long idUsuario;
 
     private String usuario;
 
     private String nombre;
+
+    public boolean isSuccess() {
+        return success;
+    }
 
     public String getUsuario() {
         return usuario;
@@ -23,4 +31,7 @@ public class Request {
         this.nombre = nombre;
     }
 
+    public long getIdUsuario() {
+        return idUsuario;
+    }
 }

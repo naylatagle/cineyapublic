@@ -1,6 +1,6 @@
 package com.example.alumno.cineya.api.login;
 
-import com.example.alumno.cineya.dto.Request;
+import com.example.alumno.cineya.dto.User;
 
 import java.util.List;
 
@@ -12,6 +12,6 @@ import retrofit2.http.POST;
 interface LoginApi {
 
     @POST("registroandroid.php")
-    public Call<List<Request>> getLogin(@Field("usuario") String title,
-                                        @Field("contrasena") String body);
+    public Call<User> getLogin(@Field("usuario") String title,
+                                     @Field("contrasena") String body);
 }

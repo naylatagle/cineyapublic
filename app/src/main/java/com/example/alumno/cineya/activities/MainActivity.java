@@ -92,6 +92,10 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
 
     }
 
+    @Override
+    public boolean onSupportNavigateUp() {
+        return false;
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -112,6 +116,7 @@ public class MainActivity extends BaseActivity implements BottomNavigationView.O
                 break;
             case R.id.action_buttom_bar_favoritos:
                 Intent intent = new Intent(MainActivity.this, Favoritos.class);
+                startActivity(intent);
                 mDrawerLayout.closeDrawer(Gravity.LEFT, true);
                 break;
         }

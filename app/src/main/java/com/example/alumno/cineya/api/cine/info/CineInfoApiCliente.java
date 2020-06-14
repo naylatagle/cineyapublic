@@ -51,6 +51,11 @@ public class CineInfoApiCliente {
             @Override
             public void onResponse(Call<List<CineInfo>> call, Response<List<CineInfo>> response) {
                 callback.execute(response.body());
+//                if(response.isSuccessful()) {
+//                    callback.execute(response.body());
+//                } else {
+//                    callback.error(response.message());
+//                }
             }
 
             @Override

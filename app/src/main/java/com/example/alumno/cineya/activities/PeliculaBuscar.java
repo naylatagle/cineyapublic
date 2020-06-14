@@ -28,13 +28,10 @@ public class PeliculaBuscar extends BaseActivity {
         showLoading();
 
 
-        new PeliculaApiCliente(getApplicationContext()).getPeliculas(new OnSuccessCallback() {
-            @Override
-            public void execute(Object body) {
-                ListView peliP = (ListView) findViewById(R.id.listaPeliculas);
-                peliP.setAdapter(new AdaptadorPelicula(getBaseContext(), (List<Pelicula>) body));
-                hideLoading();
-            };
+        new PeliculaApiCliente(getApplicationContext()).getPeliculas(body -> {
+            ListView peliP = (ListView) findViewById(R.id.listaPeliculas);
+            peliP.setAdapter(new AdaptadorPelicula(getBaseContext(),  body));
+            hideLoading();
         });
 
         /*PeliculaApiCliente.getPeliculas(new OnSuccessCallback() {

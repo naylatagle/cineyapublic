@@ -46,7 +46,7 @@ public class PeliculaApiCliente {
         return cliente;
     }*/
 
-    public void getPeliculas(final OnSuccessCallback callback){
+    public void getPeliculas(final OnSuccessCallback<List<Pelicula>> callback){
         cliente.getPeliculas().enqueue(new Callback<List<Pelicula>>() {
             @Override
             public void onResponse(Call<List<Pelicula>> call, Response<List<Pelicula>> response) {

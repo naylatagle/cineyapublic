@@ -24,11 +24,12 @@ import java.util.List;
 import static com.facebook.FacebookSdk.getApplicationContext;
 
 
-public class CineBuscarFragment extends BaseFragment implements IAdapterClickListener<Cine> {
+public class CineBuscarFragment extends BaseFragment implements IAdapterClickListener<Cine>, AdaptadorCine.CineClickListener{
 
     public static CineBuscarFragment newInstance(){
         return new CineBuscarFragment();
     }
+    private AdaptadorCine mAdapter;
 
     @Override
     protected int getLayout() {
@@ -42,14 +43,12 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
         final ListView cineC = (ListView) view.findViewById(R.id.listaCines);
 
         showLoading();
-
-        new CineApiCliente (getContext()).getCines(new OnSuccessCallback() {
-            @Override
-            public void execute(Object body) {
-
-                cineC.setAdapter(new AdaptadorCine(getContext(), (List<Cine>) body));
-                hideLoading();
-            }
+        mAdapter = new AdaptadorCine(getContext());
+        mAdapter.setClickListener(this);
+        cineC.setAdapter(mAdapter);
+        new CineApiCliente (getContext()).getCines(body -> {
+           mAdapter.setList(body);
+            hideLoading();
         });;
 
       /*  String cineSerializado = extras.getString("cine");
@@ -83,4 +82,20 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
         }
     }
 
+    @Override
+    public void addFavorite(Cine cine, int position) {
+        //TODO metodo de la api para mandar al servidor el cine favorito.
+        //TODO cambio el icono y actualizo la lista a contirnuacion
+        new CineApiCliente(getApplicationContext()).addFavorite(new OnSuccessCallback<Cine>() {
+            @Override
+            public void execute(Cine body) {
+                if(body!=null && mAdapter != null){
+//                    cine.setEsFavorito(!cine.isEsFavorito());
+                    mAdapter.changePosition(body, position);
+                }
+            }
+        }, cine.getIdCine());
+
+
+    }
 }

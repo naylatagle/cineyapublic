@@ -1,10 +1,16 @@
 package com.example.alumno.cineya.dto;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Cine {
 
+    @SerializedName("idCine")
+    private long idCine;
     private int logoCine;
     private String Nombre;
     private String Direccion;
+    @SerializedName("favorito")
+    private boolean esFavorito;
 
     /*public Cine(int logo, String nombre, String direccion){
         logoCine = logo;
@@ -32,5 +38,17 @@ public class Cine {
 
     public String getDireccion(){
         return Direccion;
+    }
+
+    public boolean isEsFavorito() {
+        return esFavorito;
+    }
+
+    public void setEsFavorito(boolean esFavorito) {
+        this.esFavorito = esFavorito;
+    }
+
+    public long getIdCine() {
+        return idCine;
     }
 }

@@ -2,9 +2,12 @@ package com.example.alumno.cineya.activities.base;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import androidx.annotation.AnimRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -55,7 +58,6 @@ public abstract class BaseActivity extends AppCompatActivity implements IFragmen
         setSupportActionBar();
         final ActionBar ab = getSupportActionBar();
         if (ab == null) return;
-
         setupToolbar(ab);
     }
 
@@ -69,6 +71,13 @@ public abstract class BaseActivity extends AppCompatActivity implements IFragmen
         ab.setDisplayShowHomeEnabled(true); // show or hide the default home button
         ab.setDisplayHomeAsUpEnabled(true);
         ab.setDisplayShowTitleEnabled(true);
+
+    }
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        onBackPressed();
+        return true;
     }
 
     /*FRAGMENT TRANSACTIONS*/
