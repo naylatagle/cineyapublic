@@ -43,7 +43,7 @@ public class CineApiCliente {
 //        return cliente;
 //    }
 
-    public void getCines(final OnSuccessCallback callback){
+    public void getCines(final OnSuccessCallback<List<Cine>> callback){
         cliente.getCines().enqueue(new Callback<List<Cine>>() {
             @Override
             public void onResponse(Call<List<Cine>> call, Response<List<Cine>> response) {
@@ -64,4 +64,50 @@ public class CineApiCliente {
             }
         });
     }
+
+    public void getFavorites(final OnSuccessCallback<List<Cine>> callback, long userId){
+
+        cliente.getFavoritosCines(userId).enqueue(new Callback<List<Cine>>() {
+            @Override
+            public void onResponse(Call<List<Cine>> call, Response<List<Cine>> response) {
+                callback.execute(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<List<Cine>> call, Throwable throwable) {
+                Toast.makeText(context, "Fallo en la conexión con el servidor", Toast.LENGTH_SHORT).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Cierre del programa (App)
+                        System.exit(0);
+                    }
+                }, 2000); //Especifico un delay de 2 segundos ( 2000 milisegundos )
+            }
+        });
+    }
+
+    public void addFavorite (OnSuccessCallback<Cine> callback, long cineId){
+        cliente.addToFavorite().enqueue(new Callback<Cine>() {
+            @Override
+            public void onResponse(Call<Cine> call, Response<Cine> response) {
+                callback.execute(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Cine> call, Throwable t) {
+                Toast.makeText(context, "Fallo en la conexión con el servidor", Toast.LENGTH_SHORT).show();
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        //Cierre del programa (App)
+                        System.exit(0);
+                    }
+                }, 2000); //Especifico un delay de 2 segundos ( 2000 milisegundos )
+            }
+        });
+    }
+
 }

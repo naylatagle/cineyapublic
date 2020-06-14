@@ -6,6 +6,7 @@ import android.widget.ListView;
 import com.example.alumno.cineya.R;
 import com.example.alumno.cineya.activities.base.BaseActivity;
 import com.example.alumno.cineya.adapters.AdaptadorCine;
+import com.example.alumno.cineya.api.cine.CineApiCliente;
 import com.example.alumno.cineya.api.favorito.FavoritoApiCliente;
 import com.example.alumno.cineya.dto.Cine;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
@@ -25,18 +26,30 @@ public class Favoritos extends BaseActivity implements AdaptadorCine.CineClickLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        long userId = getApplicationContext()
+                .getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE)
+                .getLong("userId", 0);
+
         showLoading();
         ListView favoritoF = (ListView) findViewById(R.id.listaCines);
         mAdapter = new AdaptadorCine(getApplicationContext());
         mAdapter.setClickListener(this);
         favoritoF.setAdapter(mAdapter);
-        new FavoritoApiCliente(getApplicationContext()).getFavoritos(new OnSuccessCallback() {
+//        new FavoritoApiCliente(getApplicationContext()).getFavoritos(new OnSuccessCallback() {
+//            @Override
+//            public void execute(Object body) {
+//                mAdapter.setList((List<Cine>) body);
+//                hideLoading();
+//            }
+//        });
+//
+        new CineApiCliente(getApplicationContext()).getFavorites(new OnSuccessCallback<List<Cine>>() {
             @Override
-            public void execute(Object body) {
+            public void execute(List<Cine> body) {
                 mAdapter.setList((List<Cine>) body);
                 hideLoading();
             }
-        });;
+        }, userId);
 
         Bundle extras = getIntent().getExtras();
 

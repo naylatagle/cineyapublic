@@ -15,10 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.alumno.cineya.Constants;
 import com.example.alumno.cineya.R;
-import com.example.alumno.cineya.adapters.AdaptadorCine;
-import com.example.alumno.cineya.api.cine.CineApiCliente;
 import com.example.alumno.cineya.api.login.LoginApiCliente;
-import com.example.alumno.cineya.dto.Cine;
+import com.example.alumno.cineya.api.response.UserResponse;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -33,8 +31,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
-
-import java.util.List;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -77,25 +73,25 @@ public class LoginActivity extends AppCompatActivity {
 
         int tipo = sharedPreferences.getInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_NONE);
 
-        if(tipo == Constants.LOGIN_TYPE_FACEBOOK){
+        if (tipo == Constants.LOGIN_TYPE_FACEBOOK) {
             AccessToken accessToken = AccessToken.getCurrentAccessToken();
             boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-            if(isLoggedIn){
+            if (isLoggedIn) {
                 gotoBuscarPor();
             } else {
                 laSesionConLasRedesYaNoEsValidaTengoQueBorrarUsuarioGuardado();
             }
         } else if (tipo == Constants.LOGIN_TYPE_GMAIL) {
             GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
-            if(account!=null)
+            if (account != null)
                 gotoBuscarPor();
             else {
                 laSesionConLasRedesYaNoEsValidaTengoQueBorrarUsuarioGuardado();
             }
 
-        } else if (tipo == Constants.LOGIN_TYPE_USER){
+        } else if (tipo == Constants.LOGIN_TYPE_USER) {
             gotoBuscarPor();
-        } else{
+        } else {
             //SI NO ESTOY LOGUEADO PUEDO INICIALIZAR COSAS DEL LOGIN
             GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                     .requestEmail()
@@ -106,31 +102,14 @@ public class LoginActivity extends AppCompatActivity {
         }
 
         //Si el usuario existe significa que se hizo login anteriormente.
-        if(!user.isEmpty()) {
-            //Voy al menu de busqueda
-            gotoBuscarPor();
-        } else {
-            //Defino el comportamiento para onClick del boton Ingresar.
-            enterBtn .setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    if (isLoginSuccessful(userEt.getText().toString(), passwordEt.getText().toString())) {
-                        //persistencia resuelta con SharedPreferences
-                        sharedPreferences = context.getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
-                        //Guardo asincronicamente las credenciales de logueo
-                        sharedPreferences.edit()
-                                .putInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_USER)
-                                .putString("user", userEt.getText().toString())
-                                .putString("name", passwordEt.getText().toString())
-                                .putString("id_user", passwordEt.getText().toString())
-                                .apply();
-                                gotoBuscarPor();
-                    } else {
-                        Toast.makeText(getApplicationContext(),"Usuario Incorrecto", Toast.LENGTH_SHORT).show();
-                    }
-                }
-            });
-        }
+
+        //Defino el comportamiento para onClick del boton Ingresar.
+        enterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginUsername(userEt.getText().toString(), passwordEt.getText().toString());
+            }
+        });
 
         // Crear Cuenta
         crearcuenta.setOnClickListener(new View.OnClickListener() {
@@ -150,9 +129,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
             public void onSuccess(LoginResult loginResult) {
-               String userId = loginResult.getAccessToken().getUserId();
+                String userId = loginResult.getAccessToken().getUserId();
 
-               //POST LOGIN CON FACEBOOK -> facebookUserId <- Datos de login
+                //POST LOGIN CON FACEBOOK -> facebookUserId <- Datos de login
 
                 gotoBuscarPor();
                 loginResult.getAccessToken().getUserId();
@@ -174,6 +153,7 @@ public class LoginActivity extends AppCompatActivity {
         mBtnGoogleSignIn.setOnClickListener(getGoogleSignInClickListener());
 
     }
+
     // Login con Google
     private View.OnClickListener getGoogleSignInClickListener() {
         return v -> {
@@ -186,11 +166,11 @@ public class LoginActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         callbackManager.onActivityResult(requestCode, resultCode, data);
-        if(requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
+        if (requestCode == GOOGLE_LOGIN_REQUEST_CODE) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
-                if(account!=null && !account.isExpired()) {
+                if (account != null && !account.isExpired()) {
                     String mail = account.getEmail();
                     String userId = account.getId();
 
@@ -219,7 +199,24 @@ public class LoginActivity extends AppCompatActivity {
         startActivity(new Intent(context, MainActivity.class));
     }
 
-    private boolean isLoginSuccessful(String username, String password) {
+    private void loginUsername(String username, String password) {
+
+        new LoginApiCliente(getApplicationContext()).getLogin(body -> {
+            if(body.isSuccess()) {
+                //persistencia resuelta con SharedPreferences
+                sharedPreferences = context.getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE);
+                //Guardo asincronicamente las credenciales de logueo
+                sharedPreferences.edit()
+                        .putInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_USER)
+                        .putString("user", body.getUsuario())
+                        .putString("name", body.getNombre())
+                        .putLong("id_user", body.getIdUsuario())
+                        .apply();
+                gotoBuscarPor();
+            } else {
+                Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
+            }
+        }, username, password);
 
        /* new LoginApiCliente(getContext()).getCines(new OnSuccessCallback() {
             @Override
@@ -228,7 +225,7 @@ public class LoginActivity extends AppCompatActivity {
                 cineC.setAdapter(new AdaptadorCine(getContext(), (List<Cine>) body));
                 hideLoading();
             }*/
-        return username.equals("Cine") && password.equals("Ya");
+//        return username.equals("Cine") && password.equals("Ya");
     }
 
     private void laSesionConLasRedesYaNoEsValidaTengoQueBorrarUsuarioGuardado() {
@@ -269,8 +266,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }*/
-
-
 
 
 }

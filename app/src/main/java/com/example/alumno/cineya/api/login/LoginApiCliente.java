@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.widget.Toast;
 
 import com.example.alumno.cineya.api.RemoteFactory;
-import com.example.alumno.cineya.dto.Request;
+import com.example.alumno.cineya.dto.User;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 
 import java.util.List;
@@ -36,17 +36,16 @@ public class LoginApiCliente {
 //        return cliente;
 //    }
 
-    public void getLogin(final OnSuccessCallback callback){
-        String usuario = "";
-        String contrasena = "";
-        cliente.getLogin(usuario, contrasena).enqueue(new Callback<List<Request>>() {
+    public void getLogin(final OnSuccessCallback<User> callback, String usuario, String pass){
+        cliente.getLogin(usuario, pass).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call<List<Request>> call, Response<List<Request>> response) {
+            public void onResponse(Call<User> call, Response<User> response) {
                 callback.execute(response.body());
             }
 
             @Override
-            public void onFailure(Call<List<Request>> call, Throwable throwable) {
+            public void onFailure(Call<User> call, Throwable throwable) {
+
                 Toast.makeText(context, "Fallo en la conexión con el servidor", Toast.LENGTH_SHORT).show();
 
                 new Handler().postDelayed(new Runnable() {

@@ -40,13 +40,10 @@ public class PeliculaBuscarFragment extends BaseFragment implements IAdapterClic
 
         final ListView peliP = (ListView) view.findViewById(R.id.listaPeliculas);
 
-        new PeliculaApiCliente (getContext()).getPeliculas(new OnSuccessCallback() {
-            @Override
-            public void execute(Object body) {
+        new PeliculaApiCliente (getContext()).getPeliculas(body -> {
 
-                peliP.setAdapter(new AdaptadorPelicula(getContext(), (List<Pelicula>) body, PeliculaBuscarFragment.this));
-                hideLoading();
-            }
+            peliP.setAdapter(new AdaptadorPelicula(getContext(), body, PeliculaBuscarFragment.this));
+            hideLoading();
         });
 
         showLoading();
