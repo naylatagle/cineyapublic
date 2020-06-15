@@ -16,7 +16,10 @@ interface LoginApi {
 
 
     @POST("registroandroid.php")
-    //@FormUrlEncoded
-    public Call<User> getLogin(@Body LoginRequest loginrequest);
+    @FormUrlEncoded
+    public Call<User> getLogin(@Field("usuario") String title,
+                               @Field("contrasena") String body);
+
+    //public Call<User> getLogin(@Body LoginRequest loginrequest);
                                //@Body LoginRequest request ("contrasena") String body);
 }

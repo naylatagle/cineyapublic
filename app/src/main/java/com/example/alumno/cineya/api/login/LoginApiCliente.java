@@ -38,10 +38,13 @@ public class LoginApiCliente {
 //    }
 
     public void getLogin(final OnSuccessCallback<User> callback, String usuario, String contrasena){
-        LoginRequest request = new LoginRequest();
-        request.setUsuario(usuario);
-        request.setContrasena(contrasena);
-        cliente.getLogin(request).enqueue(new Callback<User>() {
+        //LoginRequest request = new LoginRequest();
+        //request.setUsuario(usuario);
+        //request.setContrasena(contrasena);
+
+        //cliente.getLogin(request).enqueue(new Callback<User>() {
+        cliente.getLogin(usuario, contrasena).enqueue(new Callback<User>() {
+
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 callback.execute(response.body());

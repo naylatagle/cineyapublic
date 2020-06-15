@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RemoteFactory {
 
     private static final String WEB_SERVICE_BASE_URL = "https://cineya.site/";
+    //private static final String WEB_SERVICE_BASE_URL = "https://vanadous-inches.000webhostapp.com/";
     private static final HttpLoggingInterceptor.Level LOGIN_LEVEL = HttpLoggingInterceptor.Level.BODY;
 
     public <T> T createApiClient(Class<T> clazz) {

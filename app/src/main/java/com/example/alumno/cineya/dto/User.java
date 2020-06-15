@@ -33,5 +33,4 @@ public class User {
 
     public long getIdUsuario() {
         return idUsuario;
-    }
-}
+    }}
