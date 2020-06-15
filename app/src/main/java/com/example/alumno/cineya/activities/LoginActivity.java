@@ -70,6 +70,7 @@ public class LoginActivity extends AppCompatActivity {
         String user = sharedPreferences.getString("user", "");
         String name = sharedPreferences.getString("name", "");
         String id_user = sharedPreferences.getString("id_user", "");
+        //Long id_user = sharedPreferences.getLong("id_user", Long.parseLong(""));
 
         int tipo = sharedPreferences.getInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_NONE);
 
@@ -209,7 +210,7 @@ public class LoginActivity extends AppCompatActivity {
                         .putInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_USER)
                         .putString("user", body.getUsuario())
                         .putString("name", body.getNombre())
-                        .putLong("id_user", body.getIdUsuario())
+                        .putString("id_user", body.getIdUsuario())
                         .apply();
                 gotoBuscarPor();
             } else {

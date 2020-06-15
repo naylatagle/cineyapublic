@@ -12,6 +12,7 @@ public class Cine {
     @SerializedName("favorito")
     private boolean esFavorito;
 
+
     /*public Cine(int logo, String nombre, String direccion){
         logoCine = logo;
         Nombre = nombre;
