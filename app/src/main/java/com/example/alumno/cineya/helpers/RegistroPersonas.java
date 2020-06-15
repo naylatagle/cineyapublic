@@ -9,8 +9,7 @@ import java.util.Map;
 
 public class RegistroPersonas extends StringRequest {
 
-    private static final String REGISTRO_PERSONAS_URL="https://vanadous-inches.000webhostapp.com/conexionandroid.php";
-
+    private static final String REGISTRO_PERSONAS_URL="https://cineya.site/conexionandroid.php";
 
     private Map<String,String>params;
 

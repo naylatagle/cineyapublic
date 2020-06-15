@@ -98,13 +98,16 @@ public class AdaptadorCine extends BaseAdapter {
     private View.OnClickListener getClickFavorite(final Cine cine, final int position) {
         return v -> {
             if(mClickListener!=null){
-                mClickListener.addFavorite(cine, position);
+                mClickListener.addFavorito(cine, position);
             }
         };
     }
 
     public interface CineClickListener{
-        void addFavorite(Cine cine, final int position);
+        void addFavorito(Cine cine, final int position);
+        //void removeFavorito(Cine cine, final int position);
+
     }
+
 
 }

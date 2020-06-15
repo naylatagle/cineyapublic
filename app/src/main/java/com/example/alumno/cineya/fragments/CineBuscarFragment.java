@@ -83,7 +83,7 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
     }
 
     @Override
-    public void addFavorite(Cine cine, int position) {
+    public void addFavorito(Cine cine, int position) {
         //TODO metodo de la api para mandar al servidor el cine favorito.
         //TODO cambio el icono y actualizo la lista a contirnuacion
         new CineApiCliente(getApplicationContext()).addFavorite(new OnSuccessCallback<Cine>() {
@@ -98,4 +98,9 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
 
 
     }
+
+    /*@Override
+    public void removeFavorito(Cine cine, int position) {
+
+    }*/
 }

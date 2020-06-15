@@ -101,7 +101,6 @@ public class LoginActivity extends AppCompatActivity {
 
         }
 
-        //Si el usuario existe significa que se hizo login anteriormente.
 
         //Defino el comportamiento para onClick del boton Ingresar.
         enterBtn.setOnClickListener(new View.OnClickListener() {
@@ -214,7 +213,7 @@ public class LoginActivity extends AppCompatActivity {
                         .apply();
                 gotoBuscarPor();
             } else {
-                Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Los datos ingresados son incorrectos", Toast.LENGTH_SHORT).show();
             }
         }, usuario, contrasena);
 

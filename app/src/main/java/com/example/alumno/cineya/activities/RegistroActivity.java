@@ -18,7 +18,6 @@ import com.example.alumno.cineya.helpers.RegistroPersonas;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
 public class RegistroActivity extends BaseActivity implements View.OnClickListener {
 
     EditText etnombre,etusuario,etcontraseña,etrepcontraseña;
