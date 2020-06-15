@@ -16,8 +16,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.alumno.cineya.Constants;
 import com.example.alumno.cineya.R;
 import com.example.alumno.cineya.api.login.LoginApiCliente;
-import com.example.alumno.cineya.api.response.UserResponse;
-import com.example.alumno.cineya.helpers.OnSuccessCallback;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -210,7 +208,7 @@ public class LoginActivity extends AppCompatActivity {
                         .putInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_USER)
                         .putString("user", body.getUsuario())
                         .putString("name", body.getNombre())
-                        .putString("id_user", body.getIdUsuario())
+                        .putLong("id_user", body.getId_usuario())
                         .apply();
                 gotoBuscarPor();
             } else {
