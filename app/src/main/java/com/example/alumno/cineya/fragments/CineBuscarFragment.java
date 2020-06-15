@@ -90,8 +90,8 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
             @Override
             public void execute(Cine body) {
                 if(body!=null && mAdapter != null){
-//                    cine.setEsFavorito(!cine.isEsFavorito());
-                    mAdapter.changePosition(body, position);
+                    cine.setEsFavorito(true);
+                    mAdapter.changePosition(cine, position);
                 }
             }
         }, cine.getIdCine());

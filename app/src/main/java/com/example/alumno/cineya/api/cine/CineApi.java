@@ -22,7 +22,7 @@ interface CineApi {
 
     @GET("mostrarfavoritos")
     //@FormUrlEncoded
-    public Call<List<Cine>> getFavoritosCines(@Query("userId") long userID);
+    public Call<List<Cine>> getFavoritosCines(@Query("Id_usuario") long userID);
 
     @POST("favoritos")
     public Call<Cine> addToFavorite();
