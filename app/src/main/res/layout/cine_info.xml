@@ -17,6 +17,13 @@
         android:layout_height="wrap_content"
         android:id="@+id/horarioPelicula"
         android:textSize="20dp" />
-    />
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/mensaje"
+        android:textSize="14dp"
+        android:textStyle="normal"/>
+
 
 </LinearLayout>

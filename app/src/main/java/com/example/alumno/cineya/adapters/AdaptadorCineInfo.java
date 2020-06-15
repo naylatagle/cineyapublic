@@ -57,7 +57,10 @@ public class AdaptadorCineInfo extends BaseAdapter {
         OpcionPelicula.setText(cineInfoList.get(i).getOpcionPelicula());
         HorarioPelicula.setText(cineInfoList.get(i).getHorarioPelicula());
 
-        Mensaje.setText(cineInfoList.get(i).getMensaje());
+        if(cineInfo.getMensaje()!=null){
+            Mensaje.setText(cineInfo.getMensaje());
+        }
+        //Mensaje.setText(cineInfoList.get(i).getMensaje());
         //Mensaje.setText(cineInfoList !=null ? cineInfoList.get(i).getMensaje() : 0);
 
         cineInfoView.setOnClickListener(new CineInfoOnClickListener(context, cineInfo));

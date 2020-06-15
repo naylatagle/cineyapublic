@@ -67,8 +67,8 @@ public class LoginActivity extends AppCompatActivity {
         //Consulto por los valores de las claves que me interesan.
         String user = sharedPreferences.getString("user", "");
         String name = sharedPreferences.getString("name", "");
-        String id_user = sharedPreferences.getString("id_user", "");
-        //Long id_user = sharedPreferences.getLong("id_user", Long.parseLong(""));
+        //String id_user = sharedPreferences.getString("id_user", "");
+        Long id_user = sharedPreferences.getLong("id_user", 0l);
 
         int tipo = sharedPreferences.getInt(Constants.SHARED_KEY_LOGIN_TYPE, Constants.LOGIN_TYPE_NONE);
 
