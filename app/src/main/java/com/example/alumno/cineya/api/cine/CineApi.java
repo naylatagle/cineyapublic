@@ -24,8 +24,10 @@ interface CineApi {
     //@FormUrlEncoded
     public Call<List<Cine>> getFavoritosCines(@Query("Id_usuario") long userID);
 
-    @POST("favoritos.php")
-    public Call<Cine> addToFavorite();
+    @POST("favoritos")
+    @FormUrlEncoded
+    public Call<Cine> addToFavorite(@Field("Id_usuario") long userID,
+                                    @Field("Id_cine") long cineId);
 
     @POST("removenfavorito")
     public Call<Cine> removeFavorito();

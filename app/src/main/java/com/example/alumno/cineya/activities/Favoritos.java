@@ -28,7 +28,7 @@ public class Favoritos extends BaseActivity implements AdaptadorCine.CineClickLi
 
         long userId = getApplicationContext()
                 .getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE)
-                .getLong("userId", 0);
+                .getLong("userID", 0);
 
         showLoading();
         ListView favoritoF = (ListView) findViewById(R.id.listaCines);

@@ -1,9 +1,11 @@
 package com.example.alumno.cineya.api.cine;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 import android.widget.Toast;
 
+import com.example.alumno.cineya.R;
 import com.example.alumno.cineya.api.RemoteFactory;
 import com.example.alumno.cineya.helpers.OnSuccessCallback;
 import com.example.alumno.cineya.dto.Cine;
@@ -88,8 +90,11 @@ public class CineApiCliente {
         });
     }
 
-    public void addFavorite (OnSuccessCallback<Cine> callback, long cineId){
-        cliente.addToFavorite().enqueue(new Callback<Cine>() {
+
+
+    public void addFavorite (OnSuccessCallback<Cine> callback, long cineId, long userID){
+
+        cliente.addToFavorite(userID ,cineId).enqueue(new Callback<Cine>() {
             @Override
             public void onResponse(Call<Cine> call, Response<Cine> response) {
                 callback.execute(response.body());
