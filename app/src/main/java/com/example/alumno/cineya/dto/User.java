@@ -4,7 +4,7 @@ public class User {
 
     boolean success;
 
-    private long Id_usuario;
+    private long userID;
 
     private String usuario;
 
@@ -31,6 +31,6 @@ public class User {
         this.nombre = nombre;
     }
 
-    public long getId_usuario() {
-        return Id_usuario;
+    public long getUserID() {
+        return userID;
     }}

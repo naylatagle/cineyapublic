@@ -5,6 +5,7 @@ import com.example.alumno.cineya.dto.Cine;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -26,8 +27,11 @@ interface CineApi {
 
     @POST("favoritos")
     @FormUrlEncoded
-    public Call<Cine> addToFavorite(@Field("Id_usuario") long userID,
-                                    @Field("Id_cine") long cineId);
+    public Call<Cine> addToFavorite(@Field("Id_usuario") String userID,
+                                    @Field("Id_cine") String cineId);
+
+//    @POST("favoritos")
+//    public Call<Cine> addToFavorite(@Body CineApiCliente.FavoriteRequest request);
 
     @POST("removenfavorito")
     public Call<Cine> removeFavorito();

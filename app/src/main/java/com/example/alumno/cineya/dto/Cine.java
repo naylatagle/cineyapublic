@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 public class Cine {
 
-    @SerializedName("Id_cine")
+    @SerializedName("Id")
     private long idCine;
     private int logoCine;
     private String Nombre;

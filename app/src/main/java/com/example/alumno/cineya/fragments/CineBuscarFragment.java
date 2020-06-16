@@ -106,7 +106,7 @@ public class CineBuscarFragment extends BaseFragment implements IAdapterClickLis
                     mAdapter.changePosition(cine, position);
                 }
             }
-        }, userID,cine.getIdCine());
+        },cine.getIdCine(), userID);
 
 
     }

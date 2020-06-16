@@ -94,7 +94,7 @@ public class CineApiCliente {
 
     public void addFavorite (OnSuccessCallback<Cine> callback, long cineId, long userID){
 
-        cliente.addToFavorite(userID ,cineId).enqueue(new Callback<Cine>() {
+        cliente.addToFavorite(String.valueOf(userID), String.valueOf(cineId)).enqueue(new Callback<Cine>() {
             @Override
             public void onResponse(Call<Cine> call, Response<Cine> response) {
                 callback.execute(response.body());
@@ -113,6 +113,16 @@ public class CineApiCliente {
                 }, 2000); //Especifico un delay de 2 segundos ( 2000 milisegundos )
             }
         });
+    }
+
+    public class FavoriteRequest {
+        long Id_usuario;
+        long Id_cine;
+
+        public FavoriteRequest(long id_usuario, long id_cine) {
+            Id_usuario = id_usuario;
+            Id_cine = id_cine;
+        }
     }
 
 }
