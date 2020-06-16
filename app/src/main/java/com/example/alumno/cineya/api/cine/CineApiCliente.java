@@ -67,9 +67,9 @@ public class CineApiCliente {
         });
     }
 
-    public void getFavorites(final OnSuccessCallback<List<Cine>> callback, long userId){
+    public void getFavorites(final OnSuccessCallback<List<Cine>> callback, long userID){
 
-        cliente.getFavoritosCines(userId).enqueue(new Callback<List<Cine>>() {
+        cliente.getFavoritosCines(userID).enqueue(new Callback<List<Cine>>() {
             @Override
             public void onResponse(Call<List<Cine>> call, Response<List<Cine>> response) {
                 callback.execute(response.body());

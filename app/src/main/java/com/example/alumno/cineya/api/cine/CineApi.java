@@ -21,9 +21,9 @@ interface CineApi {
     @GET("mostrarcinesandroid")
     public Call<List<Cine>> getCines();
 
-    @GET("mostrarfavoritos")
-    //@FormUrlEncoded
-    public Call<List<Cine>> getFavoritosCines(@Query("Id_usuario") long userID);
+    @POST("mostrarfavoritos")
+    @FormUrlEncoded
+    public Call<List<Cine>> getFavoritosCines(@Field("Id_usuario") long userID);
 
     @POST("favoritos")
     @FormUrlEncoded

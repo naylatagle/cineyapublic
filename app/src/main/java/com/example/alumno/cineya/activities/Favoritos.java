@@ -26,7 +26,7 @@ public class Favoritos extends BaseActivity implements AdaptadorCine.CineClickLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        long userId = getApplicationContext()
+        long userID = getApplicationContext()
                 .getSharedPreferences(getResources().getString(R.string.app_name), MODE_PRIVATE)
                 .getLong("userID", 0);
 
@@ -49,7 +49,7 @@ public class Favoritos extends BaseActivity implements AdaptadorCine.CineClickLi
                 mAdapter.setList((List<Cine>) body);
                 hideLoading();
             }
-        }, userId);
+        }, userID);
 
         Bundle extras = getIntent().getExtras();
 
